@@ -2,7 +2,7 @@
 
 ## v1+
 
-- [x] Check question per field — done as a Lexly course (lexly/scripts/fieldbook-course.py, 380 quizzes from fields.json); rerun after editing fields.json
+- [x] Check question per field — hand-written `q` on all 88 fields, tap-to-answer on the page, first exercise in the Lexly course (2026-09-07)
 - [ ] Mobile-optimized touch interactions (swipe to navigate fields, pinch to zoom graph)
 - [ ] ASC submission (needs a name check; weather apps blocked, also need real app store name)
 - [ ] i18n support (translate field descriptions across 26 languages)
