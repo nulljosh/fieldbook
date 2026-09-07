@@ -235,24 +235,24 @@
     const seen = new Set(), links = [];
     FIELDS.forEach(f => f.r.forEach(r => { const k = [f.n, r].sort().join('|'); if (!byName[r] || seen.has(k)) return; seen.add(k); links.push({ source: byName[f.n], target: byName[r] }); byName[f.n].deg++; byName[r].deg++; }));
     const maxDeg = d3.max(nodes, n => n.deg);
-    nodes.forEach(n => { n.r = 4 + 3 * Math.sqrt(n.deg); n.nb = new Set(); });
+    nodes.forEach(n => { n.r = 5 + 3.2 * Math.sqrt(n.deg); n.nb = new Set(); });
     links.forEach(l => { l.source.nb.add(l.target); l.target.nb.add(l.source); });
     // each domain gets a home direction around the centre so the web reads as clusters
     const home = Object.fromEntries(domains.map((d, i) => { const a = i / domains.length * Math.PI * 2 - Math.PI / 2; return [d, { x: W / 2 + Math.cos(a) * 340, y: H / 2 + Math.sin(a) * 260 }]; }));
 
     const sim = d3.forceSimulation(nodes)
       .force('link', d3.forceLink(links).distance(l => 60 + 40 * (l.source.f.d !== l.target.f.d)).strength(.5))
-      .force('charge', d3.forceManyBody().strength(n => -180 - 40 * n.deg))
-      .force('collide', d3.forceCollide(n => n.r + 14).iterations(2))
+      .force('charge', d3.forceManyBody().strength(n => -420 - 60 * n.deg))
+      .force('collide', d3.forceCollide(n => n.r + 26).iterations(2))
       .force('x', d3.forceX(n => home[n.f.d].x).strength(.06))
       .force('y', d3.forceY(n => home[n.f.d].y).strength(.06))
-      .force('radial', d3.forceRadial(n => 380 * (1 - n.deg / maxDeg), W / 2, H / 2).strength(n => .12 * n.deg / maxDeg))
+      .force('radial', d3.forceRadial(n => 380 * (1 - n.deg / maxDeg), W / 2, H / 2).strength(n => .08 * n.deg / maxDeg))
       .alphaDecay(.03);
 
     const root = svg.append('g');
     const link = root.append('g').selectAll('line').data(links).join('line');
     const node = root.append('g').selectAll('g').data(nodes).join('g')
-      .attr('class', n => 'node' + (n.deg >= 8 ? ' hub' : '')).attr('data-id', n => n.id)
+      .attr('class', n => 'node' + (n.deg >= 9 ? ' hub' : '')).attr('data-id', n => n.id)
       .attr('tabindex', 0).attr('role', 'link').attr('aria-label', n => n.f.n);
     node.append('circle').attr('r', n => n.r);
     node.append('text').attr('x', n => n.r + 5).attr('y', 4).text(n => n.f.n);
@@ -267,7 +267,13 @@
 
     const zoom = d3.zoom().scaleExtent([.5, 4]).on('zoom', e => { root.attr('transform', e.transform); map.classList.toggle('zoomed', e.transform.k > 1.4); });
     svg.call(zoom).on('dblclick.zoom', null);
-    document.getElementById('fit').onclick = () => svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+    function fit(ms) {
+      const x0 = d3.min(nodes, n => n.x - n.r), x1 = d3.max(nodes, n => n.x + n.r), y0 = d3.min(nodes, n => n.y - n.r), y1 = d3.max(nodes, n => n.y + n.r);
+      const k = Math.min(3, .92 / Math.max((x1 - x0) / W, (y1 - y0) / H));
+      svg.transition().duration(ms).call(zoom.transform, d3.zoomIdentity.translate(W / 2 - k * (x0 + x1) / 2, H / 2 - k * (y0 + y1) / 2).scale(k));
+    }
+    document.getElementById('fit').onclick = () => fit(500);
+    sim.on('end', () => fit(900));
 
     sim.on('tick', () => {
       link.attr('x1', l => l.source.x).attr('y1', l => l.source.y).attr('x2', l => l.target.x).attr('y2', l => l.target.y);
