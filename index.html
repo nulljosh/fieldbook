@@ -12,6 +12,7 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
+  .map { border-top: 1px solid var(--border, #eee); border-bottom: 1px solid var(--border, #eee); overflow: hidden; }
   body { background: var(--bg, #fafafa); color: var(--text, #111); font-family: var(--font-body, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif); line-height: 1.6; -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
@@ -146,6 +147,11 @@
   .map.focus .node { opacity: .18; }
   .map.focus .node.on { opacity: 1; }
   .map.focus .node.on text { opacity: 1; }
+  .map .fit { position: absolute; right: 1rem; bottom: .75rem; font-size: .8rem; font-weight: 600; padding: .35rem .8rem; border-radius: 999px; border: 1px solid var(--border2, #ddd); background: var(--glass); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  .map svg { cursor: grab; background: radial-gradient(circle at 50% 50%, var(--bg2, #f5f5f5) 0%, transparent 70%); }
+  .map svg:active { cursor: grabbing; }
+  .map.zoomed .node text { opacity: 1; }
+  .map .node text { font-size: 12px; }
   .map .hint { position: absolute; left: 1rem; bottom: .75rem; font-size: .75rem; color: var(--text3, #999); pointer-events: none; }
   .map .legend { position: absolute; right: 1rem; top: .5rem; font-size: .75rem; color: var(--text3, #999); pointer-events: none; }
 </style>
@@ -180,11 +186,12 @@
       <p>Read it top to bottom in an afternoon. Then you know where everything is, and you can go deeper wherever you like.</p>
       <a class="resume" id="resume" href="#"><svg class="icon" aria-hidden="true"><use href="#i-resume"/></svg><span></span></a>
     </div>
-    <div class="map" id="map"><svg id="graph" role="img" aria-label="Map of every field, linked to its neighbours"></svg><div class="legend">Bigger = more connected. Filled = read.</div><div class="hint">Hover to see a field's neighbours. Click to jump. Drag to rearrange.</div></div>
+    <div class="map" id="map"><svg id="graph" role="img" aria-label="Map of every field, linked to its neighbours"></svg><div class="legend">Bigger = more connected. Filled = read.</div><div class="hint">Hover for neighbours. Click to jump. Drag, scroll to zoom.</div><button class="fit" id="fit" aria-label="Reset view">Fit</button></div>
     <div id="content"></div>
     <footer>Fieldbook is a map, not the territory. Mark a field read to keep your place. Nothing leaves your browser.</footer>
   </main>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script src="data.js"></script>
 <script>
   const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
@@ -218,70 +225,59 @@
   }
 
 
-  // ---- graph ----
-  // ponytail: hand-rolled force layout, 76 nodes, O(n^2) repulsion is nothing. d3 if it ever grows past a few hundred.
+  // ---- graph (d3-force) ----
   (() => {
-    const svg = document.getElementById('graph'), map = document.getElementById('map');
-    const W = 1400, H = 820; svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-    const byName = Object.fromEntries(FIELDS.map(f => [f.n, f]));
-    const N = FIELDS.map((f, i) => ({ f, id: slug(f.n), i, x: W / 2 + (Math.random() - .5) * 400, y: H / 2 + (Math.random() - .5) * 240, vx: 0, vy: 0, deg: 0, nb: new Set() }));
-    const idx = Object.fromEntries(N.map(n => [n.f.n, n]));
-    const E = [];
-    const seen = new Set();
-    FIELDS.forEach(f => f.r.forEach(r => { if (!byName[r]) return; const k = [f.n, r].sort().join('|'); if (seen.has(k)) return; seen.add(k); const a = idx[f.n], b = idx[r]; E.push([a, b]); a.deg++; b.deg++; a.nb.add(b); b.nb.add(a); }));
-    N.forEach(n => n.r = 3 + 2.6 * Math.sqrt(n.deg));
-    const maxDeg = Math.max(...N.map(n => n.deg));
+    const svg = d3.select('#graph'), map = document.getElementById('map');
+    const W = 1400, H = 860; svg.attr('viewBox', `0 0 ${W} ${H}`);
+    const domains = [...new Set(FIELDS.map(f => f.d))];
+    const nodes = FIELDS.map(f => ({ id: slug(f.n), f, deg: 0 }));
+    const byName = Object.fromEntries(nodes.map(n => [n.f.n, n]));
+    const seen = new Set(), links = [];
+    FIELDS.forEach(f => f.r.forEach(r => { const k = [f.n, r].sort().join('|'); if (!byName[r] || seen.has(k)) return; seen.add(k); links.push({ source: byName[f.n], target: byName[r] }); byName[f.n].deg++; byName[r].deg++; }));
+    const maxDeg = d3.max(nodes, n => n.deg);
+    nodes.forEach(n => { n.r = 4 + 3 * Math.sqrt(n.deg); n.nb = new Set(); });
+    links.forEach(l => { l.source.nb.add(l.target); l.target.nb.add(l.source); });
+    // each domain gets a home direction around the centre so the web reads as clusters
+    const home = Object.fromEntries(domains.map((d, i) => { const a = i / domains.length * Math.PI * 2 - Math.PI / 2; return [d, { x: W / 2 + Math.cos(a) * 340, y: H / 2 + Math.sin(a) * 260 }]; }));
 
-    function tick(alpha) {
-      for (let i = 0; i < N.length; i++) for (let j = i + 1; j < N.length; j++) {
-        const a = N[i], b = N[j]; let dx = b.x - a.x, dy = b.y - a.y, d2 = dx * dx + dy * dy || 1;
-        const d = Math.sqrt(d2), min = a.r + b.r + 6;
-        let f = 6500 / d2; if (d < min) f += (min - d) * .5;   // repel, hard floor on overlap
-        dx = dx / d * f * alpha; dy = dy / d * f * alpha; a.vx -= dx; a.vy -= dy; b.vx += dx; b.vy += dy;
-      }
-      for (const [a, b] of E) {
-        const dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1, want = 130 + (a.r + b.r);
-        const f = (d - want) * .04 * alpha; a.vx += dx / d * f; a.vy += dy / d * f; b.vx -= dx / d * f; b.vy -= dy / d * f;
-      }
-      for (const n of N) {
-        const g = (.003 + .03 * n.deg / maxDeg) * alpha;         // hubs feel more gravity: they sit in the middle
-        n.vx += (W / 2 - n.x) * g; n.vy += (H / 2 - n.y) * g;
-        if (n.fixed) { n.vx = n.vy = 0; continue; }
-        n.vx *= .6; n.vy *= .6; n.x += n.vx; n.y += n.vy;
-        n.x = Math.max(n.r + 4, Math.min(W - n.r - 4, n.x)); n.y = Math.max(n.r + 4, Math.min(H - n.r - 4, n.y));
-      }
-    }
-    for (let i = 0; i < 300; i++) tick(1 - i / 320);
+    const sim = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links).distance(l => 60 + 40 * (l.source.f.d !== l.target.f.d)).strength(.5))
+      .force('charge', d3.forceManyBody().strength(n => -180 - 40 * n.deg))
+      .force('collide', d3.forceCollide(n => n.r + 14).iterations(2))
+      .force('x', d3.forceX(n => home[n.f.d].x).strength(.06))
+      .force('y', d3.forceY(n => home[n.f.d].y).strength(.06))
+      .force('radial', d3.forceRadial(n => 380 * (1 - n.deg / maxDeg), W / 2, H / 2).strength(n => .12 * n.deg / maxDeg))
+      .alphaDecay(.03);
 
-    const ns = 'http://www.w3.org/2000/svg', el = (t, a) => { const e = document.createElementNS(ns, t); for (const k in a) e.setAttribute(k, a[k]); return e; };
-    const gl = el('g', {}), gn = el('g', {}); svg.append(gl, gn);
-    const lines = E.map(([a, b]) => { const l = el('line', {}); l._a = a; l._b = b; gl.append(l); return l; });
-    const nodes = N.map(n => {
-      const g = el('g', { class: 'node' + (n.deg >= 6 ? ' hub' : ''), 'data-id': n.id, tabindex: 0, role: 'link', 'aria-label': n.f.n });
-      const c = el('circle', { r: n.r }), t = el('text', { x: n.r + 4, y: 4 }); t.textContent = n.f.n;
-      g.append(c, t); gn.append(g); n.el = g;
-      g.addEventListener('pointerenter', () => focus(n)); g.addEventListener('focus', () => focus(n));
-      g.addEventListener('pointerleave', unfocus); g.addEventListener('blur', unfocus);
-      g.addEventListener('click', () => { if (!n.dragged) location.hash = n.id; });
-      g.addEventListener('keydown', e => { if (e.key === 'Enter') location.hash = n.id; });
-      g.addEventListener('pointerdown', e => { n.fixed = true; n.dragged = false; g.setPointerCapture(e.pointerId); });
-      g.addEventListener('pointermove', e => { if (!n.fixed || !(e.buttons & 1)) return; const p = pt(e); n.x = p.x; n.y = p.y; n.dragged = true; settle(); });
-      g.addEventListener('pointerup', () => { n.fixed = false; settle(); });
-      return g;
+    const root = svg.append('g');
+    const link = root.append('g').selectAll('line').data(links).join('line');
+    const node = root.append('g').selectAll('g').data(nodes).join('g')
+      .attr('class', n => 'node' + (n.deg >= 8 ? ' hub' : '')).attr('data-id', n => n.id)
+      .attr('tabindex', 0).attr('role', 'link').attr('aria-label', n => n.f.n);
+    node.append('circle').attr('r', n => n.r);
+    node.append('text').attr('x', n => n.r + 5).attr('y', 4).text(n => n.f.n);
+
+    node.on('pointerenter focus', (e, n) => focus(n)).on('pointerleave blur', unfocus)
+      .on('click', (e, n) => { if (!n.dragged) location.hash = n.id; })
+      .on('keydown', (e, n) => { if (e.key === 'Enter') location.hash = n.id; })
+      .call(d3.drag()
+        .on('start', (e, n) => { n.dragged = false; if (!e.active) sim.alphaTarget(.3).restart(); n.fx = n.x; n.fy = n.y; })
+        .on('drag', (e, n) => { n.dragged = true; n.fx = e.x; n.fy = e.y; })
+        .on('end', (e, n) => { if (!e.active) sim.alphaTarget(0); n.fx = n.fy = null; }));
+
+    const zoom = d3.zoom().scaleExtent([.5, 4]).on('zoom', e => { root.attr('transform', e.transform); map.classList.toggle('zoomed', e.transform.k > 1.4); });
+    svg.call(zoom).on('dblclick.zoom', null);
+    document.getElementById('fit').onclick = () => svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+
+    sim.on('tick', () => {
+      link.attr('x1', l => l.source.x).attr('y1', l => l.source.y).attr('x2', l => l.target.x).attr('y2', l => l.target.y);
+      node.attr('transform', n => `translate(${n.x},${n.y})`);
     });
-    function pt(e) { const r = svg.getBoundingClientRect(); return { x: (e.clientX - r.left) / r.width * W, y: (e.clientY - r.top) / r.height * H }; }
-    function draw() {
-      lines.forEach(l => { l.setAttribute('x1', l._a.x); l.setAttribute('y1', l._a.y); l.setAttribute('x2', l._b.x); l.setAttribute('y2', l._b.y); });
-      N.forEach(n => n.el.setAttribute('transform', `translate(${n.x.toFixed(1)},${n.y.toFixed(1)})`));
-    }
-    function focus(n) { map.classList.add('focus'); n.el.classList.add('on'); n.nb.forEach(m => m.el.classList.add('on')); lines.forEach(l => l.classList.toggle('on', l._a === n || l._b === n)); }
-    function unfocus() { map.classList.remove('focus'); nodes.forEach(g => g.classList.remove('on')); lines.forEach(l => l.classList.remove('on')); }
-    let raf = 0, energy = 0;
-    function settle() { energy = 40; if (!raf) raf = requestAnimationFrame(loop); }
-    function loop() { tick(.3); draw(); raf = --energy > 0 ? requestAnimationFrame(loop) : 0; }
-    draw();
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) settle();
-    window.paintGraph = () => N.forEach(n => n.el.classList.toggle('done', read.has(n.id)));
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { sim.tick(300); sim.stop(); sim.on('tick')(); }
+
+    function focus(n) { map.classList.add('focus'); node.classed('on', m => m === n || n.nb.has(m)); link.classed('on', l => l.source === n || l.target === n); }
+    function unfocus() { map.classList.remove('focus'); node.classed('on', false); link.classed('on', false); }
+    window.paintGraph = () => node.classed('done', n => read.has(n.id));
     paintGraph();
   })();
 
