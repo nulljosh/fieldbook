@@ -45,3 +45,11 @@ test('every field links to real fields, no self-links, everyone is on the map', 
   }
   assert.equal(Object.keys(deg).length, F.length, 'isolated field');
 });
+
+test('every field has a check question with three distinct wrong answers', () => {
+  for (const f of F) {
+    assert.ok(f.q && f.q.q.endsWith('?') && f.q.a, `${f.n}: check question`);
+    assert.equal(new Set([f.q.a, ...f.q.x]).size, 4, `${f.n}: four distinct choices`);
+  }
+  assert.ok(F.filter(f => f.start).length >= 5, 'start points');
+});
