@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fieldbook — every field of science, explained plainly</title>
+<meta name="description" content="Physics to physiology, calculus to sociology. What each field studies, its core ideas, and the gap most people have. No account, no course, no fluff.">
+<meta property="og:title" content="Fieldbook">
+<meta property="og:description" content="Every field of science and math, explained plainly. Read it in an afternoon.">
+<link rel="icon" href="icon.svg">
+<link rel="stylesheet" href="https://heyitsmejosh.com/tokens.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg, #fafafa); color: var(--text, #111); font-family: var(--font-body, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+  .layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+  nav { position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 1.5rem 1rem; border-right: 1px solid var(--border, #eee); background: var(--bg2, #f5f5f5); }
+  nav h1 { font-size: 1.1rem; font-weight: 700; letter-spacing: -.02em; padding: 0 .5rem; margin-bottom: .25rem; }
+  nav .tag { font-size: .8rem; color: var(--text2, #555); padding: 0 .5rem; margin-bottom: 1rem; }
+  nav input { width: 100%; padding: .5rem .75rem; border: 1px solid var(--border2, #ddd); border-radius: var(--radius-sm, 8px); background: var(--bg, #fff); color: inherit; margin-bottom: 1rem; }
+  nav h2 { font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text2, #555); margin: 1rem .5rem .35rem; }
+  nav a { display: flex; align-items: center; gap: .5rem; padding: .3rem .5rem; border-radius: var(--radius-sm, 8px); font-size: .9rem; }
+  nav a:hover { background: var(--border, #eee); }
+  nav a.done::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent, #111); flex: none; }
+  nav a:not(.done)::before { content: ''; width: 6px; height: 6px; border-radius: 50%; border: 1px solid var(--border2, #ccc); flex: none; }
+  .progress { font-size: .8rem; color: var(--text2, #555); padding: 0 .5rem; margin-top: 1.25rem; }
+
+  main { padding: 3rem clamp(1.5rem, 5vw, 5rem); max-width: 860px; }
+  .intro { margin-bottom: 4rem; }
+  .intro h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 700; letter-spacing: -.025em; line-height: 1.08; margin-bottom: 1rem; }
+  .intro p { font-size: 1.15rem; color: var(--text2, #555); max-width: 40rem; margin-bottom: .75rem; }
+
+  .domain { margin-bottom: 4rem; }
+  .domain > h2 { font-size: 1.6rem; font-weight: 700; letter-spacing: -.02em; padding-bottom: .5rem; border-bottom: 1px solid var(--border, #eee); margin-bottom: 1.5rem; }
+  article { padding: 1.75rem 0; border-bottom: 1px solid var(--border, #eee); scroll-margin-top: 1rem; }
+  article h3 { font-size: 1.3rem; font-weight: 700; letter-spacing: -.015em; }
+  article .studies { color: var(--text2, #555); margin-bottom: .9rem; }
+  article p.body { margin-bottom: 1rem; max-width: 42rem; }
+  article ul { list-style: none; margin-bottom: 1rem; }
+  article li { padding: .3rem 0 .3rem 1.1rem; position: relative; font-size: .95rem; }
+  article li::before { content: ''; position: absolute; left: 0; top: .85rem; width: 5px; height: 5px; border-radius: 50%; background: var(--text3, #999); }
+  .gap { background: var(--bg2, #f5f5f5); border-left: 3px solid var(--accent, #111); padding: .8rem 1rem; border-radius: 0 var(--radius-sm, 8px) var(--radius-sm, 8px) 0; font-size: .95rem; max-width: 42rem; }
+  .gap b { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--text2, #555); margin-bottom: .2rem; }
+  .mark { margin-top: 1rem; font-size: .85rem; color: var(--text2, #555); border: 1px solid var(--border2, #ddd); padding: .35rem .8rem; border-radius: 999px; }
+  article.done .mark { background: var(--text, #111); color: var(--bg, #fff); border-color: transparent; }
+  article.hidden { display: none; }
+  footer { padding: 3rem 0 1rem; color: var(--text2, #555); font-size: .9rem; }
+
+  @media (max-width: 760px) {
+    .layout { grid-template-columns: 1fr; }
+    nav { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--border, #eee); }
+    nav .list { display: none; }
+    nav.open .list { display: block; }
+    .toggle { display: block; font-size: .85rem; color: var(--text2, #555); padding: 0 .5rem; }
+  }
+  @media (min-width: 761px) { .toggle { display: none; } }
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav id="nav">
+    <h1>Fieldbook</h1>
+    <div class="tag">Every field. One page.</div>
+    <input id="q" type="search" placeholder="Search fields" aria-label="Search fields">
+    <button class="toggle" id="toggle">Show contents</button>
+    <div class="list" id="list"></div>
+    <div class="progress" id="progress"></div>
+  </nav>
+  <main>
+    <div class="intro">
+      <h1>Everything humans know, at the level of a map.</h1>
+      <p>Each field of science and math in a few hundred words: what it studies, the four ideas that matter, and the thing most people get wrong.</p>
+      <p>Read it top to bottom in an afternoon. Then you know where everything is, and you can go deeper wherever you like.</p>
+    </div>
+    <div id="content"></div>
+    <footer>Fieldbook is a map, not the territory. Mark a field read to keep your place. Nothing leaves your browser.</footer>
+  </main>
+</div>
+<script src="data.js"></script>
+<script>
+  const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  const KEY = 'fieldbook.read';
+  let read = new Set();
+  try { read = new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); } catch {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify([...read])); } catch {} };
+
+  const domains = [...new Set(FIELDS.map(f => f.d))];
+  const list = document.getElementById('list'), content = document.getElementById('content');
+
+  for (const d of domains) {
+    const h = document.createElement('h2'); h.textContent = d; list.appendChild(h);
+    const sec = document.createElement('section'); sec.className = 'domain'; sec.id = slug(d);
+    sec.innerHTML = `<h2>${d}</h2>`;
+    for (const f of FIELDS.filter(f => f.d === d)) {
+      const id = slug(f.n);
+      const a = document.createElement('a'); a.href = '#' + id; a.textContent = f.n; a.dataset.id = id; list.appendChild(a);
+      const art = document.createElement('article'); art.id = id; art.dataset.id = id;
+      art.innerHTML = `<h3>${f.n}</h3><div class="studies">${f.s}</div><p class="body">${f.p}</p>
+        <ul>${f.k.map(k => `<li>${k}</li>`).join('')}</ul>
+        <div class="gap"><b>The gap</b>${f.g}</div>
+        <button class="mark">Mark read</button>`;
+      art.querySelector('.mark').onclick = () => { read.has(id) ? read.delete(id) : read.add(id); save(); render(); };
+      sec.appendChild(art);
+    }
+    content.appendChild(sec);
+  }
+
+  function render() {
+    document.querySelectorAll('[data-id]').forEach(el => {
+      const done = read.has(el.dataset.id);
+      el.classList.toggle('done', done);
+      if (el.tagName === 'ARTICLE') el.querySelector('.mark').textContent = done ? 'Read' : 'Mark read';
+    });
+    document.getElementById('progress').textContent = `${read.size} of ${FIELDS.length} read`;
+  }
+  render();
+
+  document.getElementById('q').oninput = e => {
+    const q = e.target.value.trim().toLowerCase();
+    document.querySelectorAll('article').forEach(a => a.classList.toggle('hidden', q && !a.textContent.toLowerCase().includes(q)));
+    document.querySelectorAll('nav a').forEach(a => a.hidden = q && !document.getElementById(a.dataset.id).textContent.toLowerCase().includes(q));
+  };
+  document.getElementById('toggle').onclick = () => document.getElementById('nav').classList.toggle('open');
+</script>
+</body>
+</html>
