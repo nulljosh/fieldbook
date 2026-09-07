@@ -4,3 +4,12 @@
 LICENSE
 wrangler.toml
 screenshots
+ios
+macos
+kmp
+tui
+scripts
+Package.swift
+Package.resolved
+.github
+.build

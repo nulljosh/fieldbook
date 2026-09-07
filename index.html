@@ -57,13 +57,65 @@
     .toggle { display: block; font-size: .85rem; color: var(--text2, #555); padding: 0 .5rem; }
   }
   @media (min-width: 761px) { .toggle { display: none; } }
+
+  /* ---- spirit ---- */
+  .icon { width: 1.35em; height: 1.35em; flex: none; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; vertical-align: -.3em; }
+  .domain > h2 { display: flex; align-items: center; gap: .6rem; }
+  .domain > h2 .icon { width: 1.6em; height: 1.6em; }
+  .domain > h2 .icon path, .domain > h2 .icon circle, .domain > h2 .icon ellipse, .domain > h2 .icon rect, .domain > h2 .icon line { stroke-dasharray: 1; stroke-dashoffset: 1; }
+  .domain.in > h2 .icon * { animation: draw 1.4s var(--ease, ease-out) forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  article h3 { display: flex; align-items: center; gap: .5rem; }
+  article h3 .icon { color: var(--text3, #999); transition: transform .4s var(--spring, ease), color .3s; }
+  article:hover h3 .icon { transform: rotate(-8deg) scale(1.15); color: var(--text, #111); }
+  article { opacity: 0; transform: translateY(14px); transition: opacity .6s var(--ease, ease-out), transform .6s var(--ease, ease-out); }
+  article.in, article.hidden { opacity: 1; transform: none; }
+  .mark { transition: transform .35s var(--spring, ease), background .2s, color .2s; }
+  .mark:active { transform: scale(.92); }
+  article.done .mark { animation: pop .45s var(--spring, ease); }
+  @keyframes pop { 0% { transform: scale(.8); } 60% { transform: scale(1.12); } 100% { transform: scale(1); } }
+  nav a::before { transition: transform .35s var(--spring, ease), background .2s; }
+  nav a.done::before { animation: pop .45s var(--spring, ease); }
+  .bar { height: 3px; background: var(--border, #eee); border-radius: 2px; margin: .5rem .5rem 0; overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--accent, #111); transition: width .6s var(--ease, ease-out); }
+
+  .intro { position: relative; padding: 3rem 0 2rem; }
+  .intro > * { position: relative; z-index: 1; }
+  .sky { position: absolute; inset: -3rem -2rem -1rem; z-index: 0; pointer-events: none; overflow: hidden; }
+  .sky svg { width: 100%; height: 100%; }
+  .sky line { stroke: var(--text3, #999); stroke-width: .6; opacity: .25; }
+  .sky circle { fill: var(--text2, #555); opacity: .35; animation: twinkle var(--t, 4s) ease-in-out infinite alternate; }
+  .sky g { animation: orbit 120s linear infinite; transform-origin: 50% 50%; }
+  @keyframes twinkle { from { opacity: .15; r: 1.2; } to { opacity: .6; r: 2.2; } }
+  @keyframes orbit { to { transform: rotate(6deg) translateX(1.5%); } }
+  .intro::after { content: ''; position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 55% 60% at 40% 50%, var(--bg, #fafafa) 20%, transparent 80%); }
+  .intro h1 span { display: inline-block; animation: rise .8s var(--ease, ease-out) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(.4em); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    article { opacity: 1; transform: none; }
+    .domain > h2 .icon * { stroke-dashoffset: 0; }
+  }
 </style>
 </head>
 <body>
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-physics" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6" pathLength="1"/><ellipse cx="12" cy="12" rx="9" ry="3.5" pathLength="1"/><ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(60 12 12)" pathLength="1"/><ellipse cx="12" cy="12" rx="9" ry="3.5" transform="rotate(-60 12 12)" pathLength="1"/></symbol>
+  <symbol id="i-chemistry" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.5 18a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L14 9V3" pathLength="1"/><path d="M7 15h10" pathLength="1"/></symbol>
+  <symbol id="i-biology" viewBox="0 0 24 24"><path d="M7 3c0 6 10 6 10 12s-10 6-10 6" pathLength="1"/><path d="M17 3c0 6-10 6-10 12s10 6 10 6" pathLength="1"/><path d="M8.5 6.5h7M8.5 17.5h7M7.5 12h9" pathLength="1"/></symbol>
+  <symbol id="i-anatomy" viewBox="0 0 24 24"><path d="M12 20.5s-8-4.8-8-11A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5c0 6.2-8 11-8 11z" pathLength="1"/><path d="M4.5 12h4l1.5-2.5 2 5 2-4 1 1.5h4.5" pathLength="1"/></symbol>
+  <symbol id="i-earth" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" pathLength="1"/><path d="M3.5 15.5c3 1.6 8.6 1.6 13.5-.5s8-5 6.5-7.2" pathLength="1"/><path d="M8 7.5c1 2 3 3 6 3" pathLength="1"/></symbol>
+  <symbol id="i-math" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16" pathLength="1"/><path d="M5 17c4 0 5-10 8-10s3 6 6 6" pathLength="1"/><circle cx="13" cy="7" r="1.2" pathLength="1"/></symbol>
+  <symbol id="i-computing" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" pathLength="1"/><rect x="10" y="10" width="4" height="4" pathLength="1"/><path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3" pathLength="1"/></symbol>
+  <symbol id="i-mind" viewBox="0 0 24 24"><circle cx="6" cy="7" r="2.2" pathLength="1"/><circle cx="18" cy="6" r="2.2" pathLength="1"/><circle cx="12" cy="17" r="2.2" pathLength="1"/><circle cx="19" cy="16" r="1.6" pathLength="1"/><path d="M8 8l2.8 7M16.2 7.5L13.5 15M14.2 17h3.2M8 7h8" pathLength="1"/></symbol>
+  <symbol id="i-applied" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" pathLength="1"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1" pathLength="1"/><circle cx="12" cy="12" r="7" pathLength="1"/></symbol>
+</svg>
 <div class="layout">
   <nav id="nav">
     <h1>Fieldbook</h1>
     <div class="tag">Every field. One page.</div>
+    <div class="bar"><i id="bar"></i></div>
     <input id="q" type="search" placeholder="Search fields" aria-label="Search fields">
     <button class="toggle" id="toggle">Show contents</button>
     <div class="list" id="list"></div>
@@ -71,7 +123,8 @@
   </nav>
   <main>
     <div class="intro">
-      <h1>Everything humans know, at the level of a map.</h1>
+      <div class="sky" id="sky"></div>
+      <h1 id="title">Everything humans know, at the level of a map.</h1>
       <p>Each field of science and math in a few hundred words: what it studies, the four ideas that matter, and the thing most people get wrong.</p>
       <p>Read it top to bottom in an afternoon. Then you know where everything is, and you can go deeper wherever you like.</p>
     </div>
@@ -87,18 +140,20 @@
   try { read = new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); } catch {}
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify([...read])); } catch {} };
 
+  const ICON = { 'Physics': 'physics', 'Chemistry': 'chemistry', 'Biology': 'biology', 'Anatomy & Physiology': 'anatomy', 'Earth & Space': 'earth', 'Mathematics': 'math', 'Computing': 'computing', 'Mind & Society': 'mind', 'Applied': 'applied' };
+  const icon = d => `<svg class="icon" aria-hidden="true"><use href="#i-${ICON[d] || 'applied'}"/></svg>`;
   const domains = [...new Set(FIELDS.map(f => f.d))];
   const list = document.getElementById('list'), content = document.getElementById('content');
 
   for (const d of domains) {
     const h = document.createElement('h2'); h.textContent = d; list.appendChild(h);
     const sec = document.createElement('section'); sec.className = 'domain'; sec.id = slug(d);
-    sec.innerHTML = `<h2>${d}</h2>`;
+    sec.innerHTML = `<h2>${icon(d)}${d}</h2>`;
     for (const f of FIELDS.filter(f => f.d === d)) {
       const id = slug(f.n);
       const a = document.createElement('a'); a.href = '#' + id; a.textContent = f.n; a.dataset.id = id; list.appendChild(a);
       const art = document.createElement('article'); art.id = id; art.dataset.id = id;
-      art.innerHTML = `<h3>${f.n}</h3><div class="studies">${f.s}</div><p class="body">${f.p}</p>
+      art.innerHTML = `<h3>${icon(f.d)}${f.n}</h3><div class="studies">${f.s}</div><p class="body">${f.p}</p>
         <ul>${f.k.map(k => `<li>${k}</li>`).join('')}</ul>
         <div class="gap"><b>The gap</b>${f.g}</div>
         <button class="mark">Mark read</button>`;
@@ -115,6 +170,7 @@
       if (el.tagName === 'ARTICLE') el.querySelector('.mark').textContent = done ? 'Read' : 'Mark read';
     });
     document.getElementById('progress').textContent = `${read.size} of ${FIELDS.length} read`;
+    document.getElementById('bar').style.width = (100 * read.size / FIELDS.length) + '%';
   }
   render();
 
@@ -123,6 +179,18 @@
     document.querySelectorAll('article').forEach(a => a.classList.toggle('hidden', q && !a.textContent.toLowerCase().includes(q)));
     document.querySelectorAll('nav a').forEach(a => a.hidden = q && !document.getElementById(a.dataset.id).textContent.toLowerCase().includes(q));
   };
+  // ponytail: constellation is 60 random nodes joined when close; CSS does the motion
+  (() => {
+    const W = 800, H = 400, pts = Array.from({ length: 60 }, () => [Math.random() * W, Math.random() * H]);
+    let s = '';
+    pts.forEach((a, i) => pts.slice(i + 1).forEach(b => { if (Math.hypot(a[0] - b[0], a[1] - b[1]) < 110) s += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`; }));
+    pts.forEach(p => s += `<circle cx="${p[0]}" cy="${p[1]}" r="1.6" style="--t:${(2 + Math.random() * 4).toFixed(1)}s"/>`);
+    document.getElementById('sky').innerHTML = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice"><g>${s}</g></svg>`;
+  })();
+  const t = document.getElementById('title');
+  t.innerHTML = t.textContent.split(' ').map((w, i) => `<span style="animation-delay:${i * 60}ms">${w}</span>`).join(' ');
+  const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('article, .domain').forEach(el => io.observe(el));
   document.getElementById('toggle').onclick = () => document.getElementById('nav').classList.toggle('open');
 </script>
 </body>

@@ -29,3 +29,10 @@ test('anatomy is covered', () => {
   for (const sys of ['skeletal', 'muscular', 'nervous', 'endocrine', 'cardiovascular', 'respiratory', 'digestive', 'urinary', 'reproductive', 'integumentary', 'lymphatic'])
     assert.ok(a.some(n => n.includes(sys)), sys);
 });
+test('generated native sources are in sync with data.js', async () => {
+  const { execFileSync } = await import('node:child_process');
+  const before = readFileSync('ios/Fieldbook/Fields.swift', 'utf8') + readFileSync('kmp/shared/src/commonMain/kotlin/com/nulljosh/fieldbook/Fields.kt', 'utf8');
+  execFileSync('node', ['scripts/gen.mjs']);
+  const after = readFileSync('ios/Fieldbook/Fields.swift', 'utf8') + readFileSync('kmp/shared/src/commonMain/kotlin/com/nulljosh/fieldbook/Fields.kt', 'utf8');
+  assert.equal(before, after, 'run node scripts/gen.mjs and commit');
+});

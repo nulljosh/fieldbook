@@ -14,7 +14,7 @@ Plain English, short sentences, no jargon without an inline gloss. Exactly four 
 
 ## Testing
 
-`node --test data.test.mjs` checks the content. `node --test ui.test.mjs` drives the live page in Chrome through Playwright: render count, search filtering, mark-read persistence across reload, index navigation, and captures screenshots.
+`node --test data.test.mjs` checks the content. `node --test ui.test.mjs`. `swift build && .build/debug/fieldbook-tui --check` covers the native content; xcodegen + xcodebuild in ios/ and macos/; `./gradlew :composeApp:packageDmg` in kmp/ needs JDK 17 (CI does Windows, Linux, Android) drives the live page in Chrome through Playwright: render count, search filtering, mark-read persistence across reload, index navigation, and captures screenshots.
 
 ## Deployment
 

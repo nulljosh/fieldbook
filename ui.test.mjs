@@ -11,6 +11,9 @@ test('page renders, search filters, mark read persists', async () => {
   await page.goto(URL);
   const total = await page.locator('article').count();
   assert.ok(total >= 70, `articles: ${total}`);
+  assert.equal(await page.locator('article svg.icon').count(), total, 'icon per article');
+  await page.locator('#topology').scrollIntoViewIfNeeded(); await page.waitForTimeout(800);
+  assert.ok(await page.locator('#topology.in').count(), 'scroll-in class applied');
   await page.fill('#q', 'kidney');
   const visible = await page.locator('article:not(.hidden)').count();
   assert.ok(visible > 0 && visible < total, `filtered: ${visible}`);

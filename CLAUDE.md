@@ -6,3 +6,5 @@ Every field of science and math explained plainly. One page, no build. Live at f
 - Read progress in localStorage only
 - Deploy: `env -u CLOUDFLARE_API_TOKEN npx wrangler deploy`
 - Design tokens from heyitsmejosh.com/tokens.css. No emojis, no serif, no purple
+- Native: `ios/` + `macos/` (xcodegen, shared ContentView), `kmp/` (Android + desktop Compose, CI builds msi/deb/apk via native-release.yml), `tui/` (SwiftPM + SwiftTUI). All read `Fields.swift`/`Fields.kt`, generated from data.js by `node scripts/gen.mjs`; data.test.mjs fails if stale
+- No JDK on this Mac. Gradle is verified by CI only
