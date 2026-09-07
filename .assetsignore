@@ -1,4 +1,6 @@
 .git
 *.md
+*.test.mjs
 LICENSE
 wrangler.toml
+screenshots
