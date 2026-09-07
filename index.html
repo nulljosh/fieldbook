@@ -118,6 +118,7 @@
   ::selection { background: var(--accent, #111); color: var(--bg, #fff); }
 
   @media (max-width: 760px) {
+    .map { width: 100vw; margin-left: -1.5rem; }
     nav { position: sticky; top: 0; z-index: 5; padding: .9rem 1rem; }
     nav input { margin-bottom: .5rem; }
     .ring, .kbd { display: none; }
@@ -132,8 +133,8 @@
   }
 
   /* ---- the map: force graph, node size = connections, hubs pulled to centre ---- */
-  .map { position: relative; margin: 0 -1rem 4rem; }
-  .map svg { width: 100%; height: clamp(360px, 60vh, 640px); display: block; touch-action: none; }
+  .map { position: relative; margin: 0 0 4rem calc(-1 * clamp(1.5rem, 5vw, 5rem)); width: calc(100vw - 260px); max-width: 1500px; }
+  .map svg { width: 100%; height: clamp(420px, 80vh, 860px); display: block; touch-action: none; }
   .map line { stroke: var(--text3, #999); stroke-opacity: .28; stroke-width: 1; transition: stroke-opacity .25s; }
   .map .node { cursor: pointer; }
   .map .node circle { fill: var(--bg, #fff); stroke: var(--text, #111); stroke-width: 1.5; transition: r .3s var(--spring, ease), fill .2s, opacity .25s; }
@@ -221,29 +222,29 @@
   // ponytail: hand-rolled force layout, 76 nodes, O(n^2) repulsion is nothing. d3 if it ever grows past a few hundred.
   (() => {
     const svg = document.getElementById('graph'), map = document.getElementById('map');
-    const W = 1000, H = 600; svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const W = 1400, H = 820; svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
     const byName = Object.fromEntries(FIELDS.map(f => [f.n, f]));
     const N = FIELDS.map((f, i) => ({ f, id: slug(f.n), i, x: W / 2 + (Math.random() - .5) * 400, y: H / 2 + (Math.random() - .5) * 240, vx: 0, vy: 0, deg: 0, nb: new Set() }));
     const idx = Object.fromEntries(N.map(n => [n.f.n, n]));
     const E = [];
     const seen = new Set();
     FIELDS.forEach(f => f.r.forEach(r => { if (!byName[r]) return; const k = [f.n, r].sort().join('|'); if (seen.has(k)) return; seen.add(k); const a = idx[f.n], b = idx[r]; E.push([a, b]); a.deg++; b.deg++; a.nb.add(b); b.nb.add(a); }));
-    N.forEach(n => n.r = 4 + 2.4 * Math.sqrt(n.deg));
+    N.forEach(n => n.r = 3 + 2.6 * Math.sqrt(n.deg));
     const maxDeg = Math.max(...N.map(n => n.deg));
 
     function tick(alpha) {
       for (let i = 0; i < N.length; i++) for (let j = i + 1; j < N.length; j++) {
         const a = N[i], b = N[j]; let dx = b.x - a.x, dy = b.y - a.y, d2 = dx * dx + dy * dy || 1;
         const d = Math.sqrt(d2), min = a.r + b.r + 6;
-        let f = 1800 / d2; if (d < min) f += (min - d) * .5;   // repel, hard floor on overlap
+        let f = 6500 / d2; if (d < min) f += (min - d) * .5;   // repel, hard floor on overlap
         dx = dx / d * f * alpha; dy = dy / d * f * alpha; a.vx -= dx; a.vy -= dy; b.vx += dx; b.vy += dy;
       }
       for (const [a, b] of E) {
-        const dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1, want = 70 + (a.r + b.r);
+        const dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1, want = 130 + (a.r + b.r);
         const f = (d - want) * .04 * alpha; a.vx += dx / d * f; a.vy += dy / d * f; b.vx -= dx / d * f; b.vy -= dy / d * f;
       }
       for (const n of N) {
-        const g = (.008 + .05 * n.deg / maxDeg) * alpha;         // hubs feel more gravity: they sit in the middle
+        const g = (.003 + .03 * n.deg / maxDeg) * alpha;         // hubs feel more gravity: they sit in the middle
         n.vx += (W / 2 - n.x) * g; n.vy += (H / 2 - n.y) * g;
         if (n.fixed) { n.vx = n.vy = 0; continue; }
         n.vx *= .6; n.vy *= .6; n.x += n.vx; n.y += n.vy;
