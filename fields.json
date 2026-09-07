@@ -2,6 +2,15 @@
  {
   "d": "Physics",
   "n": "Classical mechanics",
+  "r": [
+   "Calculus",
+   "Thermodynamics",
+   "Fluid dynamics",
+   "Relativity",
+   "Engineering",
+   "Differential equations and dynamics",
+   "Astrophysics and cosmology"
+  ],
   "s": "How things move and why.",
   "p": "Newton's picture of the world. Objects keep doing what they are doing until a force acts on them. Force changes motion in proportion to mass. Every push has an equal push back. From these three rules you get orbits, bridges, car crashes, and thrown balls. Energy and momentum are the bookkeeping that never lies: they can move around but the totals stay fixed.",
   "k": [
@@ -15,6 +24,14 @@
  {
   "d": "Physics",
   "n": "Thermodynamics",
+  "r": [
+   "Physical chemistry",
+   "Information theory",
+   "Condensed matter physics",
+   "Meteorology",
+   "Nutrition",
+   "Engineering"
+  ],
   "s": "Heat, energy, and the direction of time.",
   "p": "Energy cannot be created or destroyed, only converted. But every conversion wastes some as heat that spreads out and can never be fully gathered back. That spreading is entropy, and it always increases overall. This is why engines are never perfectly efficient, why ice melts in a warm room and never refreezes on its own, and why time seems to run one way.",
   "k": [
@@ -28,6 +45,13 @@
  {
   "d": "Physics",
   "n": "Electromagnetism",
+  "r": [
+   "Optics",
+   "Relativity",
+   "Particle physics",
+   "Condensed matter physics",
+   "Acoustics"
+  ],
   "s": "Electricity, magnetism, and light as one thing.",
   "p": "Moving charges make magnetic fields. Changing magnetic fields push charges. Maxwell wrote this as four equations and noticed the pair could chase each other through empty space as a wave moving at one particular speed. That speed was the speed of light. Light is an electromagnetic wave. So is radio, microwaves, X-rays. Same thing, different wavelength.",
   "k": [
@@ -41,6 +65,12 @@
  {
   "d": "Physics",
   "n": "Relativity",
+  "r": [
+   "Astrophysics and cosmology",
+   "Quantum mechanics",
+   "Geometry and trigonometry",
+   "Astronomy"
+  ],
   "s": "Space and time as one flexible fabric.",
   "p": "Special relativity: the speed of light is the same for everyone, no matter how fast they move. To make that true, time and length must stretch and shrink depending on your speed. Mass and energy turn out to be the same thing. General relativity: gravity is not a force but the shape of spacetime. Mass bends it, and things follow the bends. GPS satellites have to correct for both effects every day or they drift by kilometres.",
   "k": [
@@ -54,6 +84,16 @@
  {
   "d": "Physics",
   "n": "Quantum mechanics",
+  "r": [
+   "Particle physics",
+   "Condensed matter physics",
+   "Physical chemistry",
+   "General chemistry",
+   "Linear algebra",
+   "Probability",
+   "Nuclear physics",
+   "Optics"
+  ],
   "s": "How the very small actually behaves.",
   "p": "At atomic scale things do not have definite positions until measured. They have a wave of probabilities. Energy comes in fixed chunks, not a smooth flow. Two particles can be linked so that measuring one instantly fixes the other. This is not philosophy. It is the most precisely tested theory in history and it is why lasers, transistors, and MRI machines work.",
   "k": [
@@ -67,6 +107,11 @@
  {
   "d": "Physics",
   "n": "Particle physics",
+  "r": [
+   "Nuclear physics",
+   "Astrophysics and cosmology",
+   "Linear algebra"
+  ],
   "s": "The smallest pieces of matter and the forces between them.",
   "p": "Everything is made of a short list of particles. Quarks build protons and neutrons. Electrons orbit them. Forces are carried by other particles: photons for electromagnetism, gluons for the strong force that binds nuclei, W and Z bosons for the weak force behind radioactive decay. The Higgs field gives mass. This list is the Standard Model and it explains everything except gravity, dark matter, and dark energy.",
   "k": [
@@ -80,6 +125,11 @@
  {
   "d": "Physics",
   "n": "Optics",
+  "r": [
+   "Astronomy",
+   "Analytical chemistry",
+   "Geometry and trigonometry"
+  ],
   "s": "Light: how it bends, splits, and images.",
   "p": "Light slows down in glass or water, and that slowing bends it. Lenses use this to focus. Prisms use it to split white light into colours because each colour slows a different amount. Light also interferes with itself like ripples on a pond, which is how thin soap films get rainbow bands and how we know it is a wave.",
   "k": [
@@ -93,6 +143,11 @@
  {
   "d": "Physics",
   "n": "Acoustics",
+  "r": [
+   "Differential equations and dynamics",
+   "Linguistics",
+   "Fluid dynamics"
+  ],
   "s": "Sound and vibration.",
   "p": "Sound is pressure waves in a material. No material, no sound, which is why space is silent. Pitch is frequency, loudness is amplitude. Every object has natural frequencies it prefers to vibrate at, which is why a wine glass sings and a bridge can shake itself apart. Music is ratios: an octave is exactly double the frequency.",
   "k": [
@@ -106,6 +161,11 @@
  {
   "d": "Physics",
   "n": "Nuclear physics",
+  "r": [
+   "Geology",
+   "Astrophysics and cosmology",
+   "Medicine"
+  ],
   "s": "The atomic nucleus, radioactivity, fission and fusion.",
   "p": "The nucleus is protons and neutrons glued by the strong force. Some combinations are unstable and decay, throwing off particles or energy. That is radioactivity. Split a heavy nucleus and you release energy: fission, the basis of reactors and bombs. Squeeze light nuclei together and you release far more: fusion, what powers the sun.",
   "k": [
@@ -119,6 +179,11 @@
  {
   "d": "Physics",
   "n": "Condensed matter physics",
+  "r": [
+   "Materials science",
+   "Computer science",
+   "Inorganic chemistry"
+  ],
   "s": "Why solids and liquids have the properties they have.",
   "p": "The largest branch of physics. Why is copper a conductor and glass an insulator? Why do magnets work? Why does a material become a superconductor when cold enough? The answers come from how electrons behave when packed together in crystals. This field gave us the transistor, the LED, the hard drive, and the solar cell.",
   "k": [
@@ -132,6 +197,13 @@
  {
   "d": "Physics",
   "n": "Fluid dynamics",
+  "r": [
+   "Meteorology",
+   "Oceanography",
+   "Cardiovascular system",
+   "Respiratory system",
+   "Engineering"
+  ],
   "s": "How liquids and gases flow.",
   "p": "Water in a pipe, air over a wing, blood in an artery, weather. Fluids obey Newton's laws but in a way that becomes chaotic at speed: turbulence. Faster flow means lower pressure, which is part of how wings lift. The main equations have been known for two centuries and still cannot be solved in general. A million dollar prize is waiting.",
   "k": [
@@ -145,6 +217,11 @@
  {
   "d": "Physics",
   "n": "Astrophysics and cosmology",
+  "r": [
+   "Astronomy",
+   "Planetary science",
+   "Thermodynamics"
+  ],
   "s": "Stars, galaxies, and the universe as a whole.",
   "p": "Stars are fusion reactors held in balance between gravity pulling in and pressure pushing out. When the fuel runs out they collapse into white dwarfs, neutron stars, or black holes depending on size. Galaxies are billions of stars bound by gravity, most of it invisible dark matter. The universe began hot and dense 13.8 billion years ago and has been expanding since, faster and faster, driven by something we call dark energy and do not understand.",
   "k": [
@@ -158,6 +235,15 @@
  {
   "d": "Chemistry",
   "n": "General chemistry",
+  "r": [
+   "Organic chemistry",
+   "Inorganic chemistry",
+   "Physical chemistry",
+   "Analytical chemistry",
+   "Biochemistry",
+   "Materials science",
+   "Arithmetic and number theory"
+  ],
   "s": "Atoms, bonds, and reactions.",
   "p": "Atoms have a nucleus and a cloud of electrons. Chemistry is entirely about the outer electrons. Atoms bond by sharing electrons (covalent), giving them away (ionic), or pooling them (metallic). A reaction is bonds breaking and reforming. The periodic table is arranged so that atoms in the same column have the same number of outer electrons and therefore behave alike.",
   "k": [
@@ -171,6 +257,12 @@
  {
   "d": "Chemistry",
   "n": "Organic chemistry",
+  "r": [
+   "Biochemistry",
+   "Medicine",
+   "Nutrition",
+   "Agriculture"
+  ],
   "s": "Carbon compounds, which means all of life.",
   "p": "Carbon can bond four ways and chain with itself indefinitely, so it builds more compounds than every other element combined. Organic chemistry is the study of these: fuels, plastics, drugs, and every molecule in your body. The field is really about a few dozen reaction patterns that recur over and over. Learn the patterns and the millions of molecules make sense.",
   "k": [
@@ -184,6 +276,11 @@
  {
   "d": "Chemistry",
   "n": "Inorganic chemistry",
+  "r": [
+   "Materials science",
+   "Geology",
+   "Biochemistry"
+  ],
   "s": "Everything that is not carbon-based.",
   "p": "Metals, minerals, salts, and the elements at the edges of the table. This is the chemistry of catalysts, batteries, semiconductors, and pigments. Transition metals in particular can hold electrons in many configurations, which is why they are colourful and why they sit at the centre of so many biological molecules like haemoglobin and chlorophyll.",
   "k": [
@@ -197,6 +294,11 @@
  {
   "d": "Chemistry",
   "n": "Physical chemistry",
+  "r": [
+   "Biochemistry",
+   "Analytical chemistry",
+   "Differential equations and dynamics"
+  ],
   "s": "The physics underneath chemistry.",
   "p": "Why does a reaction go forward or backward? How fast? Physical chemistry answers with thermodynamics and quantum mechanics. Reactions go the way that lowers free energy. Rate depends on how much energy it takes to get over the hill in the middle, the activation energy. Heat helps. Catalysts lower the hill.",
   "k": [
@@ -210,6 +312,14 @@
  {
   "d": "Chemistry",
   "n": "Biochemistry",
+  "r": [
+   "Cell biology",
+   "Molecular biology",
+   "Nutrition",
+   "Digestive system",
+   "Endocrine system",
+   "Genetics"
+  ],
   "s": "The chemistry of living things.",
   "p": "Life runs on four molecule families: proteins (machines), nucleic acids (instructions), lipids (membranes), carbohydrates (fuel and structure). Enzymes are protein catalysts that make reactions happen millions of times faster at body temperature. Metabolism is the web of these reactions, powered by ATP, the universal energy coin.",
   "k": [
@@ -223,6 +333,11 @@
  {
   "d": "Chemistry",
   "n": "Analytical chemistry",
+  "r": [
+   "Medicine",
+   "Epidemiology and public health",
+   "Statistics"
+  ],
   "s": "Finding out what is in a sample and how much.",
   "p": "Every lab test, drug screen, water quality report, and forensic result comes from here. The tools separate mixtures (chromatography), weigh molecules (mass spectrometry), and read their structure by how they absorb light or respond to magnetic fields. Modern instruments can detect a few molecules in a swimming pool.",
   "k": [
@@ -236,6 +351,10 @@
  {
   "d": "Chemistry",
   "n": "Materials science",
+  "r": [
+   "Engineering",
+   "Agriculture"
+  ],
   "s": "Designing stuff with the properties you want.",
   "p": "Sits between chemistry, physics, and engineering. Why is steel strong and glass brittle? Why does rubber stretch? The answer is always structure at some scale: atoms, crystals, grains, fibres. Materials scientists tune that structure to make alloys, ceramics, polymers, composites, and the layered nanostructures inside every chip.",
   "k": [
@@ -249,6 +368,15 @@
  {
   "d": "Biology",
   "n": "Cell biology",
+  "r": [
+   "Molecular biology",
+   "Genetics",
+   "Microbiology",
+   "Developmental biology",
+   "Immunology",
+   "Homeostasis",
+   "Evolutionary biology"
+  ],
   "s": "The basic unit of life.",
   "p": "Every living thing is cells. A cell is a bag of salt water with a membrane that controls what enters, DNA that holds instructions, ribosomes that build proteins, and in complex cells, mitochondria that make energy. Cells divide to make more cells. Your body is about 37 trillion of them, and they mostly replace themselves over years.",
   "k": [
@@ -262,6 +390,15 @@
  {
   "d": "Biology",
   "n": "Genetics",
+  "r": [
+   "Molecular biology",
+   "Evolutionary biology",
+   "Developmental biology",
+   "Probability",
+   "Medicine",
+   "Agriculture",
+   "Reproductive system"
+  ],
   "s": "Heredity and how traits are passed on.",
   "p": "DNA is a long molecule with four letters. Genes are stretches of it that code for proteins. You get one copy of each gene from each parent. Some versions dominate, some hide. Mutations are copying errors, mostly harmless, sometimes not, and very occasionally useful. Genetics explains eye colour, inherited disease, and why siblings differ.",
   "k": [
@@ -275,6 +412,12 @@
  {
   "d": "Biology",
   "n": "Molecular biology",
+  "r": [
+   "Immunology",
+   "Microbiology",
+   "Artificial intelligence",
+   "Developmental biology"
+  ],
   "s": "How genes actually run a cell.",
   "p": "The central dogma: DNA is copied to RNA, RNA is read to make protein. But that is the start. Genes are switched on and off by other proteins, by chemical tags on the DNA, by how tightly it is coiled. The same genome makes a neuron and a liver cell by turning different genes on. Tools like PCR and CRISPR let us read, copy, and edit this directly.",
   "k": [
@@ -288,6 +431,17 @@
  {
   "d": "Biology",
   "n": "Evolutionary biology",
+  "r": [
+   "Ecology",
+   "Zoology",
+   "Botany",
+   "Microbiology",
+   "Anthropology",
+   "Psychology",
+   "Immunology",
+   "Statistics",
+   "Geology"
+  ],
   "s": "How life changes over time.",
   "p": "Organisms vary. Some variations help survival and reproduction. Those get passed on more. Repeat for billions of years and you get every species. Evolution has no goal and no direction. It is just differential reproduction. The evidence is in fossils, in DNA comparisons, in shared broken genes, and in things like the vagus nerve looping pointlessly around a giraffe's heart.",
   "k": [
@@ -301,6 +455,15 @@
  {
   "d": "Biology",
   "n": "Ecology",
+  "r": [
+   "Botany",
+   "Zoology",
+   "Climatology",
+   "Oceanography",
+   "Agriculture",
+   "Differential equations and dynamics",
+   "Economics"
+  ],
   "s": "How organisms interact with each other and their environment.",
   "p": "Energy enters through plants, moves up through things that eat them, and leaks out as heat at every step, which is why there are far fewer lions than gazelles. Populations boom and crash. Predators and prey cycle. Nutrients like carbon and nitrogen loop through soil, water, air, and bodies. Remove one species and the effects ripple in ways nobody predicted.",
   "k": [
@@ -314,6 +477,13 @@
  {
   "d": "Biology",
   "n": "Microbiology",
+  "r": [
+   "Immunology",
+   "Digestive system",
+   "Medicine",
+   "Epidemiology and public health",
+   "Agriculture"
+  ],
   "s": "Bacteria, viruses, fungi, and other tiny life.",
   "p": "Most life on Earth is microbial and most of it is unnamed. Bacteria are single cells with no nucleus, reproducing in minutes. Viruses are not alive by most definitions: a bit of genetic code in a coat that hijacks cells. Fungi digest outside their bodies. Archaea look like bacteria but are as different from them as you are. Your body carries about as many bacterial cells as human ones.",
   "k": [
@@ -327,6 +497,11 @@
  {
   "d": "Biology",
   "n": "Botany",
+  "r": [
+   "Agriculture",
+   "Climatology",
+   "Ecology"
+  ],
   "s": "Plants.",
   "p": "Plants build themselves out of air. Photosynthesis takes carbon dioxide and water and, using light, makes sugar and releases oxygen. A tree's mass comes mostly from the CO2 it pulled from the sky, not the soil. Plants have no brain but sense light, gravity, touch, and time, and they communicate chemically through air and root networks.",
   "k": [
@@ -340,6 +515,11 @@
  {
   "d": "Biology",
   "n": "Zoology",
+  "r": [
+   "Skeletal system",
+   "Neuroscience",
+   "Anthropology"
+  ],
   "s": "Animals.",
   "p": "Animals are multicellular, eat other organisms, and mostly move. The tree splits early into things with a backbone and things without, and the ones without outnumber the ones with by a huge margin. Insects alone are most known species. Zoology covers anatomy, behaviour, and classification, from sponges to whales.",
   "k": [
@@ -353,6 +533,14 @@
  {
   "d": "Biology",
   "n": "Neuroscience",
+  "r": [
+   "Nervous system",
+   "Psychology",
+   "Cognitive science",
+   "Artificial intelligence",
+   "Endocrine system",
+   "Philosophy"
+  ],
   "s": "The brain and nervous system.",
   "p": "Neurons are cells that carry electrical pulses and pass chemical signals to each other at synapses. You have about 86 billion of them with trillions of connections. Learning is those connections strengthening and weakening. The brain is not a computer in any simple sense: it is wet, slow, massively parallel, and rewrites its own wiring. Consciousness is unexplained.",
   "k": [
@@ -366,6 +554,11 @@
  {
   "d": "Biology",
   "n": "Developmental biology",
+  "r": [
+   "Reproductive system",
+   "Genetics",
+   "Evolutionary biology"
+  ],
   "s": "How one cell becomes a body.",
   "p": "A fertilised egg divides and the cells start telling each other what to become using chemical gradients. Head here, tail there. A small set of control genes, shared across all animals, lays out the body plan. The same gene that positions a fly's legs positions your ribs. Growth and shape come from where cells divide, where they die on schedule, and where they migrate.",
   "k": [
@@ -379,6 +572,12 @@
  {
   "d": "Biology",
   "n": "Immunology",
+  "r": [
+   "Lymphatic and immune system",
+   "Medicine",
+   "Epidemiology and public health",
+   "Microbiology"
+  ],
   "s": "How the body defends itself.",
   "p": "Two layers. The innate system is fast and general: barriers, inflammation, cells that eat invaders. The adaptive system is slow and specific: it builds antibodies and killer cells tailored to each threat and remembers them for decades. Vaccines train the adaptive system without the disease. Allergies and autoimmune disease are the same machinery pointed at the wrong target.",
   "k": [
@@ -392,6 +591,11 @@
  {
   "d": "Anatomy & Physiology",
   "n": "Skeletal system",
+  "r": [
+   "Muscular system",
+   "Homeostasis",
+   "Engineering"
+  ],
   "s": "Bones, joints, and cartilage.",
   "p": "206 bones in an adult, more in a baby because several fuse. Bone is living tissue that constantly rebuilds itself, which is why fractures heal and why astronauts lose bone without gravity. Bones store calcium, make blood cells in their marrow, and give muscles something to pull against. Joints are where bones meet, and the flexible ones are lubricated by fluid and cushioned by cartilage.",
   "k": [
@@ -405,6 +609,12 @@
  {
   "d": "Anatomy & Physiology",
   "n": "Muscular system",
+  "r": [
+   "Nervous system",
+   "Cardiovascular system",
+   "Nutrition",
+   "Biochemistry"
+  ],
   "s": "How you move, pump, and breathe.",
   "p": "Three kinds. Skeletal muscle moves bones and is under your control. Smooth muscle lines your gut and blood vessels and works on its own. Cardiac muscle is the heart. All contract the same way: protein filaments ratchet past each other using ATP. Muscles only pull, never push, which is why they come in opposing pairs. Growth comes from repair after small damage.",
   "k": [
@@ -418,6 +628,12 @@
  {
   "d": "Anatomy & Physiology",
   "n": "Nervous system",
+  "r": [
+   "Endocrine system",
+   "Homeostasis",
+   "Digestive system",
+   "Psychology"
+  ],
   "s": "Brain, spinal cord, and nerves.",
   "p": "The central system is brain and spinal cord. The peripheral system is every nerve leaving them. Sensory nerves carry in, motor nerves carry out. The autonomic branch runs things you never think about: heart rate, digestion, pupil size. It has a fight-or-flight side and a rest-and-digest side, and they trade off. Reflexes are handled by the spinal cord before the brain even hears about it.",
   "k": [
@@ -431,6 +647,12 @@
  {
   "d": "Anatomy & Physiology",
   "n": "Endocrine system",
+  "r": [
+   "Homeostasis",
+   "Reproductive system",
+   "Digestive system",
+   "Urinary system"
+  ],
   "s": "Hormones: chemical messages through the blood.",
   "p": "Glands release hormones into the blood and they act on distant organs. The pituitary in the brain is the master switch. Thyroid sets metabolic pace. Adrenals handle stress. Pancreas manages blood sugar with insulin and glucagon. Ovaries and testes run reproduction. Hormones work by feedback: high levels shut off their own production, like a thermostat.",
   "k": [
@@ -444,6 +666,13 @@
  {
   "d": "Anatomy & Physiology",
   "n": "Cardiovascular system",
+  "r": [
+   "Respiratory system",
+   "Urinary system",
+   "Lymphatic and immune system",
+   "Homeostasis",
+   "Medicine"
+  ],
   "s": "Heart, blood, and vessels.",
   "p": "The heart is two pumps side by side. The right side sends blood to the lungs to pick up oxygen. The left side sends it to the body. Arteries carry blood away under pressure, veins bring it back with help from valves and muscle squeezing. Capillaries are where the exchange happens, so thin that cells pass single file. Blood is cells in plasma: red for oxygen, white for defence, platelets for clotting.",
   "k": [
@@ -457,6 +686,11 @@
  {
   "d": "Anatomy & Physiology",
   "n": "Respiratory system",
+  "r": [
+   "Homeostasis",
+   "Nutrition",
+   "Acoustics"
+  ],
   "s": "Getting oxygen in and carbon dioxide out.",
   "p": "Air goes down the windpipe, splits into smaller and smaller tubes, and ends in about 300 million tiny sacs called alveoli. Their total surface is about a tennis court. Oxygen diffuses across into blood and CO2 diffuses out. The diaphragm pulls down to inhale. Your urge to breathe comes from rising CO2, not falling oxygen.",
   "k": [
@@ -470,6 +704,11 @@
  {
   "d": "Anatomy & Physiology",
   "n": "Digestive system",
+  "r": [
+   "Nutrition",
+   "Urinary system",
+   "Microbiology"
+  ],
   "s": "Turning food into molecules your cells can use.",
   "p": "A tube from mouth to anus, about nine metres, with organs attached. Mouth chews and starts on starch. Stomach churns with acid and begins protein. Small intestine does most of the breakdown, with help from the pancreas and liver's bile, and absorbs nearly everything through a surface covered in finger-like folds. Large intestine reclaims water and hosts trillions of bacteria that finish what you could not.",
   "k": [
@@ -483,6 +722,10 @@
  {
   "d": "Anatomy & Physiology",
   "n": "Urinary system",
+  "r": [
+   "Homeostasis",
+   "Medicine"
+  ],
   "s": "Filtering the blood.",
   "p": "Kidneys filter your entire blood volume about 40 times a day. They pull out nearly everything small, then reabsorb what you need: water, salt, sugar. What is left is urine. They also set blood pressure, balance acid, and signal bone marrow to make red cells. Two kidneys is one spare. Losing both without dialysis is fatal within days.",
   "k": [
@@ -496,6 +739,10 @@
  {
   "d": "Anatomy & Physiology",
   "n": "Reproductive system",
+  "r": [
+   "Endocrine system",
+   "Developmental biology"
+  ],
   "s": "Making new humans.",
   "p": "Testes make sperm continuously from puberty on. Ovaries hold all their eggs from birth and release roughly one a month. Fertilisation usually happens in the fallopian tube. The embryo implants in the uterus, the placenta grows to exchange nutrients and waste with the mother's blood without mixing it, and about 40 weeks later, birth. Hormones from the brain and gonads coordinate all of it.",
   "k": [
@@ -509,6 +756,11 @@
  {
   "d": "Anatomy & Physiology",
   "n": "Integumentary system",
+  "r": [
+   "Immunology",
+   "Homeostasis",
+   "Optics"
+  ],
   "s": "Skin, hair, nails.",
   "p": "Skin is your largest organ. The outer layer is dead cells constantly shed and replaced from below. Under it is living tissue with nerves, blood vessels, sweat glands, oil glands, and hair follicles. Skin blocks pathogens, holds water in, senses touch and temperature, makes vitamin D from sunlight, and dumps heat by sweating and by shifting blood to the surface.",
   "k": [
@@ -522,6 +774,10 @@
  {
   "d": "Anatomy & Physiology",
   "n": "Lymphatic and immune system",
+  "r": [
+   "Immunology",
+   "Cardiovascular system"
+  ],
   "s": "Drainage and defence.",
   "p": "Fluid leaks out of capillaries constantly. The lymphatic system collects it and returns it to the blood, passing through lymph nodes on the way where immune cells inspect it. Swollen glands are nodes at work. The system also absorbs fat from the gut and houses much of the immune force: spleen, thymus, tonsils, bone marrow.",
   "k": [
@@ -535,6 +791,11 @@
  {
   "d": "Anatomy & Physiology",
   "n": "Homeostasis",
+  "r": [
+   "Differential equations and dynamics",
+   "Medicine",
+   "Thermodynamics"
+  ],
   "s": "How the body holds steady.",
   "p": "The principle behind all physiology. Temperature, blood sugar, pH, oxygen, water, salt: each is held within a narrow range by feedback loops. A sensor detects drift, a control centre compares to the set point, an effector corrects. Sweat when hot, shiver when cold, insulin when sugar rises. Disease is often a set point gone wrong or a loop that failed.",
   "k": [
@@ -548,6 +809,13 @@
  {
   "d": "Earth & Space",
   "n": "Geology",
+  "r": [
+   "Planetary science",
+   "Oceanography",
+   "Climatology",
+   "Evolutionary biology",
+   "Materials science"
+  ],
   "s": "Rocks, and what the Earth is doing under your feet.",
   "p": "Earth's surface is broken into plates that drift on a hot, slowly flowing mantle. Where they pull apart, new crust forms. Where they collide, mountains rise and one dives under the other, causing earthquakes and volcanoes. Rocks cycle: melted (igneous), compressed from sediment (sedimentary), or cooked and squeezed (metamorphic). The layers record billions of years.",
   "k": [
@@ -561,6 +829,12 @@
  {
   "d": "Earth & Space",
   "n": "Meteorology",
+  "r": [
+   "Climatology",
+   "Oceanography",
+   "Differential equations and dynamics",
+   "Statistics"
+  ],
   "s": "Weather.",
   "p": "The sun heats the Earth unevenly. Warm air rises, cool air sinks, and the spin of the planet twists the flow into the patterns you see on a map. Water evaporates, rises, cools, condenses into cloud, and falls. High pressure means sinking dry air and clear sky. Low pressure means rising air and rain. It is chaotic, which is why a two-week forecast is a guess.",
   "k": [
@@ -574,6 +848,12 @@
  {
   "d": "Earth & Space",
   "n": "Climatology",
+  "r": [
+   "Oceanography",
+   "Agriculture",
+   "Political science",
+   "Economics"
+  ],
   "s": "Long-term patterns of the atmosphere.",
   "p": "Climate is weather averaged over decades. It is set by how much sun arrives, how much bounces back, and how much heat the atmosphere traps. Certain gases, mainly carbon dioxide, water vapour, and methane, let sunlight in but slow heat leaving. Without them Earth would be frozen. With too much, it warms. Ice cores and ocean sediments show CO2 and temperature moving together for 800,000 years.",
   "k": [
@@ -587,6 +867,11 @@
  {
   "d": "Earth & Space",
   "n": "Oceanography",
+  "r": [
+   "Ecology",
+   "Climatology",
+   "Fluid dynamics"
+  ],
   "s": "The seas.",
   "p": "The ocean holds 97% of Earth's water, produces half its oxygen, and absorbs most of the extra heat and much of the CO2 from burning fuel. Currents move heat around the globe: the Gulf Stream keeps Europe mild. Deep water forms when cold salty water sinks near the poles and creeps along the bottom for a thousand years. Most of the ocean floor is less mapped than the surface of Mars.",
   "k": [
@@ -600,6 +885,11 @@
  {
   "d": "Earth & Space",
   "n": "Planetary science",
+  "r": [
+   "Astronomy",
+   "Climatology",
+   "Geology"
+  ],
   "s": "Other worlds.",
   "p": "Four rocky planets close in, four giants far out, plus dwarf planets, moons, asteroids, and comets. Each is a different experiment in what a world can be. Venus has runaway greenhouse heat. Mars had rivers. Europa and Enceladus have oceans under ice. Titan has lakes of methane. Studying them tells us what is normal and what is special about Earth.",
   "k": [
@@ -613,6 +903,11 @@
  {
   "d": "Earth & Space",
   "n": "Astronomy",
+  "r": [
+   "Optics",
+   "History",
+   "Astrophysics and cosmology"
+  ],
   "s": "Looking at the sky.",
   "p": "The oldest science. Everything we know about the universe beyond the solar system comes from light. Its colour tells temperature and composition. Its shift toward red tells how fast a thing is receding. Its brightness, if you know the true brightness, tells distance. Telescopes now catch radio, infrared, X-ray, and gravitational waves too. Looking far is looking back: the light left long ago.",
   "k": [
@@ -626,6 +921,13 @@
  {
   "d": "Mathematics",
   "n": "Arithmetic and number theory",
+  "r": [
+   "Algebra",
+   "Logic and set theory",
+   "Computer science",
+   "Discrete mathematics",
+   "Information theory"
+  ],
   "s": "Numbers and their hidden structure.",
   "p": "Start with counting. Add negatives, fractions, then numbers like the square root of two that no fraction can express, then infinite decimals, then the imaginary unit. Number theory asks about whole numbers: primes, divisibility, remainders. It was pure curiosity for two thousand years. Now it encrypts every message you send, because multiplying two huge primes is easy and undoing it is not.",
   "k": [
@@ -639,6 +941,13 @@
  {
   "d": "Mathematics",
   "n": "Algebra",
+  "r": [
+   "Linear algebra",
+   "Calculus",
+   "Geometry and trigonometry",
+   "Topology",
+   "Logic and set theory"
+  ],
   "s": "Working with unknowns and structure.",
   "p": "Replace a number with a letter and rules that were about specific numbers become rules about all numbers. Solve for x. Then abstract further: study any set of things with an operation that behaves like addition or multiplication. That is abstract algebra, and it turns out symmetry itself is a kind of algebra. It is the language every other field of math is written in.",
   "k": [
@@ -652,6 +961,13 @@
  {
   "d": "Mathematics",
   "n": "Geometry and trigonometry",
+  "r": [
+   "Calculus",
+   "Topology",
+   "Linear algebra",
+   "Acoustics",
+   "Engineering"
+  ],
   "s": "Shape, space, angles, and distance.",
   "p": "Euclid started with five assumptions and derived everything about flat shapes. Change one assumption and you get curved geometries, which turned out to describe the actual universe. Trigonometry is the geometry of triangles: sine, cosine, tangent relate angles to side ratios. Because circles and waves are built from triangles, trig also describes anything that oscillates: sound, light, tides, alternating current.",
   "k": [
@@ -665,6 +981,16 @@
  {
   "d": "Mathematics",
   "n": "Calculus",
+  "r": [
+   "Differential equations and dynamics",
+   "Probability",
+   "Linear algebra",
+   "Statistics",
+   "Economics",
+   "Physical chemistry",
+   "Fluid dynamics",
+   "Electromagnetism"
+  ],
   "s": "Change and accumulation.",
   "p": "Two ideas. The derivative: how fast something is changing right now, the slope at a single point. The integral: the total accumulated, the area under a curve. Newton and Leibniz discovered they are opposites of each other, which is the fundamental theorem. With this you can handle anything that changes smoothly: motion, growth, heat, money, probability. Physics is written in calculus.",
   "k": [
@@ -678,6 +1004,12 @@
  {
   "d": "Mathematics",
   "n": "Linear algebra",
+  "r": [
+   "Artificial intelligence",
+   "Statistics",
+   "Computer science",
+   "Topology"
+  ],
   "s": "Vectors, matrices, and spaces of many dimensions.",
   "p": "A vector is a list of numbers. A matrix is a grid of them that transforms vectors: rotate, stretch, project. Solving systems of equations, compressing images, ranking web pages, training neural networks, rendering 3D graphics: all matrix operations. The key idea is that some directions are special for a given transformation. Those are eigenvectors and they show up everywhere.",
   "k": [
@@ -691,6 +1023,14 @@
  {
   "d": "Mathematics",
   "n": "Probability",
+  "r": [
+   "Statistics",
+   "Information theory",
+   "Quantum mechanics",
+   "Economics",
+   "Epidemiology and public health",
+   "Discrete mathematics"
+  ],
   "s": "Reasoning about uncertainty.",
   "p": "Assign a number between 0 and 1 to each outcome so they sum to 1. Then the rules of combining them follow. Independent events multiply. Either-or events add. Conditional probability updates beliefs on evidence, and Bayes' rule is the formula for doing it correctly. Human intuition is famously bad here, which is why casinos and insurers make money.",
   "k": [
@@ -704,6 +1044,16 @@
  {
   "d": "Mathematics",
   "n": "Statistics",
+  "r": [
+   "Psychology",
+   "Economics",
+   "Sociology",
+   "Medicine",
+   "Nutrition",
+   "Epidemiology and public health",
+   "Artificial intelligence",
+   "Genetics"
+  ],
   "s": "Learning from data.",
   "p": "Probability goes from model to data. Statistics goes from data back to model. Summarise: mean, median, spread. Infer: is this pattern real or noise? Estimate how confident you should be. The central limit theorem says averages of almost anything become bell-shaped, which is why the normal distribution is everywhere. Most published science, and most bad science, lives here.",
   "k": [
@@ -717,6 +1067,12 @@
  {
   "d": "Mathematics",
   "n": "Logic and set theory",
+  "r": [
+   "Philosophy",
+   "Computer science",
+   "Discrete mathematics",
+   "Topology"
+  ],
   "s": "The foundations underneath all of math.",
   "p": "Logic is the rules of valid argument: if this then that, and, or, not. Set theory says everything in math can be built from collections. Together they were supposed to make math perfectly secure. Then Gödel proved that any system rich enough to do arithmetic contains true statements it cannot prove. Math has a ceiling built in.",
   "k": [
@@ -730,6 +1086,12 @@
  {
   "d": "Mathematics",
   "n": "Discrete mathematics",
+  "r": [
+   "Computer science",
+   "Information theory",
+   "Artificial intelligence",
+   "Political science"
+  ],
   "s": "Math of separate, countable things.",
   "p": "Not curves but steps. Counting arrangements (combinatorics), networks of dots and lines (graph theory), and reasoning by induction. This is the math of computer science: how many ways to schedule, the shortest route through a map, whether a puzzle has a solution. The famous unsolved question P vs NP asks whether problems that are easy to check are also easy to solve.",
   "k": [
@@ -743,6 +1105,14 @@
  {
   "d": "Mathematics",
   "n": "Differential equations and dynamics",
+  "r": [
+   "Meteorology",
+   "Economics",
+   "Ecology",
+   "Cardiovascular system",
+   "Engineering",
+   "Topology"
+  ],
   "s": "Systems that change according to rules.",
   "p": "Most laws of nature say how something changes, not what it is. Solving a differential equation means finding the path that obeys the rule. Some have neat solutions. Most do not and are simulated. Small differences in start can blow up into completely different futures: chaos. The weather, the heart, populations, and the economy all live here.",
   "k": [
@@ -756,6 +1126,11 @@
  {
   "d": "Mathematics",
   "n": "Topology",
+  "r": [
+   "Condensed matter physics",
+   "Astrophysics and cosmology",
+   "Artificial intelligence"
+  ],
   "s": "Shape without measurement.",
   "p": "What stays true about a shape when you stretch it but do not tear or glue? A coffee cup and a doughnut are the same: one hole. Topology counts holes, tracks connectedness, asks whether a loop can shrink to a point. Sounds abstract. It classifies the possible shapes of the universe, analyses data clouds, and explains why certain materials conduct on their surface but not inside.",
   "k": [
@@ -769,6 +1144,13 @@
  {
   "d": "Computing",
   "n": "Computer science",
+  "r": [
+   "Information theory",
+   "Artificial intelligence",
+   "Cognitive science",
+   "Engineering",
+   "Philosophy"
+  ],
   "s": "What can be computed, and how well.",
   "p": "Not about computers. About procedures. An algorithm is a recipe that always finishes with an answer. Some problems have fast algorithms, some only slow ones, some none at all. Turing showed one simple machine can run any procedure. Every computer since is that machine with better hardware. The field splits into theory (what is possible), systems (how to build it), and applications.",
   "k": [
@@ -782,6 +1164,12 @@
  {
   "d": "Computing",
   "n": "Information theory",
+  "r": [
+   "Artificial intelligence",
+   "Linguistics",
+   "Genetics",
+   "Thermodynamics"
+  ],
   "s": "Measuring information itself.",
   "p": "Shannon defined information as surprise. A coin flip is one bit. A message you already knew carries nothing. From this: how much any channel can carry, how much any file can be compressed, how to send data through noise without error. It links to thermodynamics: entropy in physics and entropy in information are the same formula.",
   "k": [
@@ -795,6 +1183,13 @@
  {
   "d": "Computing",
   "n": "Artificial intelligence",
+  "r": [
+   "Cognitive science",
+   "Linguistics",
+   "Psychology",
+   "Philosophy",
+   "Statistics"
+  ],
   "s": "Machines that learn patterns.",
   "p": "Modern AI is mostly one idea: show a flexible function millions of examples and adjust its numbers until its outputs match. Neural networks are that function, layered so each layer builds on the last. Language models predict the next word so well that prediction becomes something like understanding. Nobody fully understands why it works this well or what the limits are.",
   "k": [
@@ -808,6 +1203,14 @@
  {
   "d": "Mind & Society",
   "n": "Psychology",
+  "r": [
+   "Cognitive science",
+   "Sociology",
+   "Economics",
+   "Medicine",
+   "Linguistics",
+   "Neuroscience"
+  ],
   "s": "How people think, feel, and behave.",
   "p": "The scientific study of the mind, using experiments rather than introspection. Perception is construction, not recording. Memory is rebuilt every time it is recalled and changes in the process. Attention is narrow. Decisions run on shortcuts that usually work and predictably fail. Personality is stable-ish and partly inherited. Much of the field's flashier findings did not replicate.",
   "k": [
@@ -821,6 +1224,12 @@
  {
   "d": "Mind & Society",
   "n": "Cognitive science",
+  "r": [
+   "Linguistics",
+   "Philosophy",
+   "Neuroscience",
+   "Computer science"
+  ],
   "s": "The mind as an information processor.",
   "p": "Psychology, neuroscience, linguistics, philosophy, and computing pooled. How does a brain represent a concept? How does a child learn grammar from noisy input? Is thought a kind of computation? The field builds models that can be tested against both behaviour and brain scans. It is the theory behind interface design, education, and AI.",
   "k": [
@@ -834,6 +1243,12 @@
  {
   "d": "Mind & Society",
   "n": "Linguistics",
+  "r": [
+   "Anthropology",
+   "History",
+   "Philosophy",
+   "Acoustics"
+  ],
   "s": "Language as a system.",
   "p": "Every language has sounds (phonology), word building (morphology), sentence structure (syntax), meaning (semantics), and use (pragmatics). All human languages are equally complex and every child learns whichever one is around. Languages change constantly and split like species. Writing is a recent add-on: speech is the real thing.",
   "k": [
@@ -847,6 +1262,13 @@
  {
   "d": "Mind & Society",
   "n": "Economics",
+  "r": [
+   "Sociology",
+   "Political science",
+   "History",
+   "Agriculture",
+   "Psychology"
+  ],
   "s": "How people allocate scarce things.",
   "p": "Microeconomics: individuals and firms responding to prices and incentives. Supply meets demand and a price emerges. Macroeconomics: whole economies, growth, inflation, unemployment, and what governments and central banks can do about them. The field has strong theory and weak prediction, because the system is people, and people react to the theory.",
   "k": [
@@ -860,6 +1282,12 @@
  {
   "d": "Mind & Society",
   "n": "Sociology",
+  "r": [
+   "Anthropology",
+   "Political science",
+   "History",
+   "Epidemiology and public health"
+  ],
   "s": "Groups, institutions, and society.",
   "p": "Individuals behave differently in groups, and groups have patterns no individual chose. Norms, roles, class, institutions. Why do some societies trust each other and others not? Why does inequality persist? Sociology uses surveys, statistics, and fieldwork. Its founders noticed that even suicide, the most personal act, has stable rates that track social conditions.",
   "k": [
@@ -873,6 +1301,12 @@
  {
   "d": "Mind & Society",
   "n": "Anthropology",
+  "r": [
+   "History",
+   "Agriculture",
+   "Linguistics",
+   "Evolutionary biology"
+  ],
   "s": "Humans across cultures and time.",
   "p": "Cultural anthropology lives with people and describes how they actually live. Physical anthropology traces the human lineage through bones and DNA. Archaeology digs up what people left. Together they show that nearly everything you assume is natural (family structure, gender roles, what counts as food) varies enormously, and a few things do not.",
   "k": [
@@ -886,6 +1320,12 @@
  {
   "d": "Mind & Society",
   "n": "Political science",
+  "r": [
+   "History",
+   "Philosophy",
+   "Economics",
+   "Sociology"
+  ],
   "s": "Power, government, and collective decision.",
   "p": "How do groups decide, and who gets what? Studies voting systems, institutions, international relations, and why states rise and fall. Key finding: rules matter enormously. The same people under different voting rules produce different outcomes. Democracies rarely fight each other. Power tends to concentrate unless something structural stops it.",
   "k": [
@@ -899,6 +1339,12 @@
  {
   "d": "Mind & Society",
   "n": "History",
+  "r": [
+   "Philosophy",
+   "Medicine",
+   "Agriculture",
+   "Astronomy"
+  ],
   "s": "What happened and why.",
   "p": "Not a science by strict definition but the only record of the experiment we are living in. History reads sources critically, cross-checks, and builds narratives that fit the evidence. It shows what has been tried, how institutions form and decay, and how often confident people were wrong. Most of it was not written down, and most of what was written was by winners.",
   "k": [
@@ -912,6 +1358,12 @@
  {
   "d": "Mind & Society",
   "n": "Philosophy",
+  "r": [
+   "Logic and set theory",
+   "Cognitive science",
+   "Political science",
+   "Neuroscience"
+  ],
   "s": "The questions underneath everything else.",
   "p": "What exists? What can be known? What is right? What makes an argument good? Every science was once philosophy until it found a method. What remains is the hard residue: consciousness, ethics, meaning, the foundations of math and science themselves. It teaches how to think clearly, spot bad arguments, and notice hidden assumptions.",
   "k": [
@@ -925,6 +1377,14 @@
  {
   "d": "Applied",
   "n": "Medicine",
+  "r": [
+   "Nutrition",
+   "Epidemiology and public health",
+   "Immunology",
+   "Cardiovascular system",
+   "Statistics",
+   "Nervous system"
+  ],
   "s": "Preventing and treating disease.",
   "p": "Applied biology, chemistry, and statistics on a human. Diagnosis is pattern matching plus tests. Treatment is drugs, surgery, or letting the body fix itself. The revolution was evidence: controlled trials to find what actually works, because intuition and testimonials mislead. Most of the gain in lifespan came from sanitation, vaccines, and antibiotics, not from hospitals.",
   "k": [
@@ -938,6 +1398,13 @@
  {
   "d": "Applied",
   "n": "Nutrition",
+  "r": [
+   "Digestive system",
+   "Biochemistry",
+   "Agriculture",
+   "Epidemiology and public health",
+   "Muscular system"
+  ],
   "s": "What food does in the body.",
   "p": "Three macronutrients: carbohydrates for quick fuel, fats for dense fuel and structure, protein for building. Plus vitamins and minerals in tiny amounts that enable reactions. Calories in versus calories out sets weight, but what you eat sets hunger, which sets calories in. The evidence base is weak because feeding experiments on humans are hard to run.",
   "k": [
@@ -951,6 +1418,13 @@
  {
   "d": "Applied",
   "n": "Engineering",
+  "r": [
+   "Materials science",
+   "Computer science",
+   "Fluid dynamics",
+   "Agriculture",
+   "Classical mechanics"
+  ],
   "s": "Making things that work under constraints.",
   "p": "Science asks what is true. Engineering asks what can be built, with this budget, this material, this deadline, and this margin of safety. Every field of science has an engineering twin: mechanical, electrical, chemical, civil, software, bio. The core skill is trade-offs: nothing is optimal on every axis. Failure analysis is how the field learns.",
   "k": [
@@ -964,6 +1438,13 @@
  {
   "d": "Applied",
   "n": "Agriculture",
+  "r": [
+   "Botany",
+   "Ecology",
+   "Genetics",
+   "Economics",
+   "Climatology"
+  ],
   "s": "Growing food on purpose.",
   "p": "Ten thousand years of selecting plants and animals for traits humans want. Modern yield comes from a few things: bred varieties, synthetic nitrogen fertiliser (made from air, and feeding half the world), irrigation, pest control, and machines. The trade-off is soil, water, and biodiversity. Feeding eight billion is the most successful project in history and the most fragile.",
   "k": [
@@ -977,6 +1458,13 @@
  {
   "d": "Applied",
   "n": "Epidemiology and public health",
+  "r": [
+   "Statistics",
+   "Medicine",
+   "Sociology",
+   "Microbiology",
+   "Immunology"
+  ],
   "s": "Disease in populations.",
   "p": "Not the patient, the pattern. Who gets sick, where, when, and what they have in common. John Snow mapped cholera to a water pump before anyone knew germs existed. The tools are counting and comparison: incidence, risk, exposure. Public health is the action side: clean water, vaccines, seatbelts, smoking bans. It has saved more lives than every hospital combined and gets no credit because nothing visibly happens.",
   "k": [

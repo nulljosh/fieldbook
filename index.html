@@ -81,13 +81,6 @@
 
   .intro { position: relative; padding: 3rem 0 2rem; }
   .intro > * { position: relative; z-index: 1; }
-  .sky { position: absolute; inset: -3rem -2rem -1rem; z-index: 0; pointer-events: none; overflow: hidden; }
-  .sky svg { width: 100%; height: 100%; }
-  .sky line { stroke: var(--text3, #999); stroke-width: .6; opacity: .25; }
-  .sky circle { fill: var(--text2, #555); opacity: .35; animation: twinkle var(--t, 4s) ease-in-out infinite alternate; }
-  .sky g { animation: orbit 120s linear infinite; transform-origin: 50% 50%; }
-  @keyframes twinkle { from { opacity: .15; r: 1.2; } to { opacity: .6; r: 2.2; } }
-  @keyframes orbit { to { transform: rotate(6deg) translateX(1.5%); } }
   .intro::after { content: ''; position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 55% 60% at 40% 50%, var(--bg, #fafafa) 20%, transparent 80%); }
   .intro h1 span { display: inline-block; animation: rise .8s var(--ease, ease-out) both; }
   @keyframes rise { from { opacity: 0; transform: translateY(.4em); } }
@@ -97,6 +90,63 @@
     article { opacity: 1; transform: none; }
     .domain > h2 .icon * { stroke-dashoffset: 0; }
   }
+
+  /* ---- apple touches ---- */
+  :root { --glass: color-mix(in srgb, var(--bg2, #f5f5f5) 72%, transparent); }
+  nav { background: var(--glass); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); }
+  nav a { transition: background .2s, color .2s, padding-left .25s var(--ease, ease-out); }
+  nav a.current { background: var(--border, #eee); font-weight: 600; padding-left: .8rem; }
+  nav h2 { display: flex; justify-content: space-between; align-items: baseline; }
+  nav h2 small { font-weight: 400; letter-spacing: 0; text-transform: none; font-variant-numeric: tabular-nums; }
+  .domain > h2 { position: sticky; top: 0; z-index: 3; background: var(--glass); -webkit-backdrop-filter: saturate(180%) blur(16px); backdrop-filter: saturate(180%) blur(16px); margin-left: -1rem; margin-right: -1rem; padding: .75rem 1rem .5rem; }
+  .ring { display: flex; align-items: center; gap: .6rem; padding: 0 .5rem; margin-top: 1.25rem; }
+  .ring svg { width: 34px; height: 34px; transform: rotate(-90deg); }
+  .ring circle { fill: none; stroke-width: 3.5; }
+  .ring .track { stroke: var(--border2, #ddd); }
+  .ring .fill { stroke: var(--accent, #111); stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .8s var(--ease, ease-out); }
+  .progress { margin-top: 0; font-variant-numeric: tabular-nums; }
+  .resume { display: none; align-items: center; gap: .5rem; margin: 1rem 0 0; padding: .55rem .9rem; border-radius: 999px; background: var(--text, #111); color: var(--bg, #fff); font-size: .9rem; font-weight: 600; box-shadow: var(--shadow-md, 0 4px 14px rgba(0,0,0,.12)); animation: rise .6s var(--ease, ease-out) both; }
+  .resume.show { display: inline-flex; }
+  .resume .icon { width: 1em; height: 1em; stroke-width: 2; }
+  article:target { animation: flash 1.6s var(--ease, ease-out); }
+  @keyframes flash { 0% { background: var(--bg2, #f5f5f5); box-shadow: inset 3px 0 0 var(--accent, #111); } 100% { background: transparent; } }
+  article h3 a.anchor { opacity: 0; margin-left: .25rem; color: var(--text3, #999); font-weight: 400; font-size: .9em; transition: opacity .2s; }
+  article:hover h3 a.anchor, article h3 a.anchor:focus-visible { opacity: 1; }
+  :focus-visible { outline: 2px solid var(--accent, #111); outline-offset: 3px; border-radius: 6px; }
+  .kbd { color: var(--text3, #999); font-size: .75rem; padding: 0 .5rem; margin-top: .75rem; }
+  kbd { font: inherit; border: 1px solid var(--border2, #ddd); border-bottom-width: 2px; border-radius: 4px; padding: 0 .3em; }
+  ::selection { background: var(--accent, #111); color: var(--bg, #fff); }
+
+  @media (max-width: 760px) {
+    nav { position: sticky; top: 0; z-index: 5; padding: .9rem 1rem; }
+    nav input { margin-bottom: .5rem; }
+    .ring, .kbd { display: none; }
+    .domain > h2 { top: 0; }
+  }
+  @media print {
+    nav, .mark, .map, .resume, .kbd { display: none !important; }
+    .layout { display: block; }
+    main { max-width: none; padding: 0; }
+    article { break-inside: avoid; opacity: 1; transform: none; }
+    .domain > h2 { position: static; break-before: page; }
+  }
+
+  /* ---- the map: force graph, node size = connections, hubs pulled to centre ---- */
+  .map { position: relative; margin: 0 -1rem 4rem; }
+  .map svg { width: 100%; height: clamp(360px, 60vh, 640px); display: block; touch-action: none; }
+  .map line { stroke: var(--text3, #999); stroke-opacity: .28; stroke-width: 1; transition: stroke-opacity .25s; }
+  .map .node { cursor: pointer; }
+  .map .node circle { fill: var(--bg, #fff); stroke: var(--text, #111); stroke-width: 1.5; transition: r .3s var(--spring, ease), fill .2s, opacity .25s; }
+  .map .node.done circle { fill: var(--text, #111); }
+  .map .node text { font-size: 11px; fill: var(--text2, #555); paint-order: stroke; stroke: var(--bg, #fff); stroke-width: 3px; pointer-events: none; opacity: 0; transition: opacity .25s; }
+  .map .node.hub text { opacity: 1; font-weight: 600; fill: var(--text, #111); }
+  .map.focus line { stroke-opacity: .06; }
+  .map.focus line.on { stroke-opacity: .7; stroke: var(--text, #111); }
+  .map.focus .node { opacity: .18; }
+  .map.focus .node.on { opacity: 1; }
+  .map.focus .node.on text { opacity: 1; }
+  .map .hint { position: absolute; left: 1rem; bottom: .75rem; font-size: .75rem; color: var(--text3, #999); pointer-events: none; }
+  .map .legend { position: absolute; right: 1rem; top: .5rem; font-size: .75rem; color: var(--text3, #999); pointer-events: none; }
 </style>
 </head>
 <body>
@@ -109,25 +159,27 @@
   <symbol id="i-math" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16" pathLength="1"/><path d="M5 17c4 0 5-10 8-10s3 6 6 6" pathLength="1"/><circle cx="13" cy="7" r="1.2" pathLength="1"/></symbol>
   <symbol id="i-computing" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" pathLength="1"/><rect x="10" y="10" width="4" height="4" pathLength="1"/><path d="M9 3v3M12 3v3M15 3v3M9 18v3M12 18v3M15 18v3M3 9h3M3 12h3M3 15h3M18 9h3M18 12h3M18 15h3" pathLength="1"/></symbol>
   <symbol id="i-mind" viewBox="0 0 24 24"><circle cx="6" cy="7" r="2.2" pathLength="1"/><circle cx="18" cy="6" r="2.2" pathLength="1"/><circle cx="12" cy="17" r="2.2" pathLength="1"/><circle cx="19" cy="16" r="1.6" pathLength="1"/><path d="M8 8l2.8 7M16.2 7.5L13.5 15M14.2 17h3.2M8 7h8" pathLength="1"/></symbol>
+  <symbol id="i-resume" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" pathLength="1"/></symbol>
   <symbol id="i-applied" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" pathLength="1"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1" pathLength="1"/><circle cx="12" cy="12" r="7" pathLength="1"/></symbol>
 </svg>
 <div class="layout">
   <nav id="nav">
     <h1>Fieldbook</h1>
     <div class="tag">Every field. One page.</div>
-    <div class="bar"><i id="bar"></i></div>
-    <input id="q" type="search" placeholder="Search fields" aria-label="Search fields">
+        <input id="q" type="search" placeholder="Search fields" aria-label="Search fields">
     <button class="toggle" id="toggle">Show contents</button>
     <div class="list" id="list"></div>
-    <div class="progress" id="progress"></div>
+    <div class="ring"><svg viewBox="0 0 36 36" aria-hidden="true"><circle class="track" cx="18" cy="18" r="15.5" pathLength="1"/><circle class="fill" id="ringfill" cx="18" cy="18" r="15.5" pathLength="1"/></svg><div class="progress" id="progress"></div></div>
+    <div class="kbd"><kbd>/</kbd> search <kbd>j</kbd> <kbd>k</kbd> move <kbd>r</kbd> mark read</div>
   </nav>
   <main>
     <div class="intro">
-      <div class="sky" id="sky"></div>
       <h1 id="title">Everything humans know, at the level of a map.</h1>
       <p>Each field of science and math in a few hundred words: what it studies, the four ideas that matter, and the thing most people get wrong.</p>
       <p>Read it top to bottom in an afternoon. Then you know where everything is, and you can go deeper wherever you like.</p>
+      <a class="resume" id="resume" href="#"><svg class="icon" aria-hidden="true"><use href="#i-resume"/></svg><span></span></a>
     </div>
+    <div class="map" id="map"><svg id="graph" role="img" aria-label="Map of every field, linked to its neighbours"></svg><div class="legend">Bigger = more connected. Filled = read.</div><div class="hint">Hover to see a field's neighbours. Click to jump. Drag to rearrange.</div></div>
     <div id="content"></div>
     <footer>Fieldbook is a map, not the territory. Mark a field read to keep your place. Nothing leaves your browser.</footer>
   </main>
@@ -146,14 +198,15 @@
   const list = document.getElementById('list'), content = document.getElementById('content');
 
   for (const d of domains) {
-    const h = document.createElement('h2'); h.textContent = d; list.appendChild(h);
+    const words = FIELDS.filter(f => f.d === d).reduce((n, f) => n + (f.p + f.k.join(' ') + f.g).split(/\s+/).length, 0);
+    const h = document.createElement('h2'); h.innerHTML = `<span>${d}</span><small>${Math.max(1, Math.round(words / 220))} min</small>`; list.appendChild(h);
     const sec = document.createElement('section'); sec.className = 'domain'; sec.id = slug(d);
     sec.innerHTML = `<h2>${icon(d)}${d}</h2>`;
     for (const f of FIELDS.filter(f => f.d === d)) {
       const id = slug(f.n);
       const a = document.createElement('a'); a.href = '#' + id; a.textContent = f.n; a.dataset.id = id; list.appendChild(a);
       const art = document.createElement('article'); art.id = id; art.dataset.id = id;
-      art.innerHTML = `<h3>${icon(f.d)}${f.n}</h3><div class="studies">${f.s}</div><p class="body">${f.p}</p>
+      art.innerHTML = `<h3>${icon(f.d)}${f.n}<a class="anchor" href="#${id}" aria-label="Link to ${f.n}">#</a></h3><div class="studies">${f.s}</div><p class="body">${f.p}</p>
         <ul>${f.k.map(k => `<li>${k}</li>`).join('')}</ul>
         <div class="gap"><b>The gap</b>${f.g}</div>
         <button class="mark">Mark read</button>`;
@@ -163,6 +216,74 @@
     content.appendChild(sec);
   }
 
+
+  // ---- graph ----
+  // ponytail: hand-rolled force layout, 76 nodes, O(n^2) repulsion is nothing. d3 if it ever grows past a few hundred.
+  (() => {
+    const svg = document.getElementById('graph'), map = document.getElementById('map');
+    const W = 1000, H = 600; svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    const byName = Object.fromEntries(FIELDS.map(f => [f.n, f]));
+    const N = FIELDS.map((f, i) => ({ f, id: slug(f.n), i, x: W / 2 + (Math.random() - .5) * 400, y: H / 2 + (Math.random() - .5) * 240, vx: 0, vy: 0, deg: 0, nb: new Set() }));
+    const idx = Object.fromEntries(N.map(n => [n.f.n, n]));
+    const E = [];
+    const seen = new Set();
+    FIELDS.forEach(f => f.r.forEach(r => { if (!byName[r]) return; const k = [f.n, r].sort().join('|'); if (seen.has(k)) return; seen.add(k); const a = idx[f.n], b = idx[r]; E.push([a, b]); a.deg++; b.deg++; a.nb.add(b); b.nb.add(a); }));
+    N.forEach(n => n.r = 4 + 2.4 * Math.sqrt(n.deg));
+    const maxDeg = Math.max(...N.map(n => n.deg));
+
+    function tick(alpha) {
+      for (let i = 0; i < N.length; i++) for (let j = i + 1; j < N.length; j++) {
+        const a = N[i], b = N[j]; let dx = b.x - a.x, dy = b.y - a.y, d2 = dx * dx + dy * dy || 1;
+        const d = Math.sqrt(d2), min = a.r + b.r + 6;
+        let f = 1800 / d2; if (d < min) f += (min - d) * .5;   // repel, hard floor on overlap
+        dx = dx / d * f * alpha; dy = dy / d * f * alpha; a.vx -= dx; a.vy -= dy; b.vx += dx; b.vy += dy;
+      }
+      for (const [a, b] of E) {
+        const dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1, want = 70 + (a.r + b.r);
+        const f = (d - want) * .04 * alpha; a.vx += dx / d * f; a.vy += dy / d * f; b.vx -= dx / d * f; b.vy -= dy / d * f;
+      }
+      for (const n of N) {
+        const g = (.008 + .05 * n.deg / maxDeg) * alpha;         // hubs feel more gravity: they sit in the middle
+        n.vx += (W / 2 - n.x) * g; n.vy += (H / 2 - n.y) * g;
+        if (n.fixed) { n.vx = n.vy = 0; continue; }
+        n.vx *= .6; n.vy *= .6; n.x += n.vx; n.y += n.vy;
+        n.x = Math.max(n.r + 4, Math.min(W - n.r - 4, n.x)); n.y = Math.max(n.r + 4, Math.min(H - n.r - 4, n.y));
+      }
+    }
+    for (let i = 0; i < 300; i++) tick(1 - i / 320);
+
+    const ns = 'http://www.w3.org/2000/svg', el = (t, a) => { const e = document.createElementNS(ns, t); for (const k in a) e.setAttribute(k, a[k]); return e; };
+    const gl = el('g', {}), gn = el('g', {}); svg.append(gl, gn);
+    const lines = E.map(([a, b]) => { const l = el('line', {}); l._a = a; l._b = b; gl.append(l); return l; });
+    const nodes = N.map(n => {
+      const g = el('g', { class: 'node' + (n.deg >= 6 ? ' hub' : ''), 'data-id': n.id, tabindex: 0, role: 'link', 'aria-label': n.f.n });
+      const c = el('circle', { r: n.r }), t = el('text', { x: n.r + 4, y: 4 }); t.textContent = n.f.n;
+      g.append(c, t); gn.append(g); n.el = g;
+      g.addEventListener('pointerenter', () => focus(n)); g.addEventListener('focus', () => focus(n));
+      g.addEventListener('pointerleave', unfocus); g.addEventListener('blur', unfocus);
+      g.addEventListener('click', () => { if (!n.dragged) location.hash = n.id; });
+      g.addEventListener('keydown', e => { if (e.key === 'Enter') location.hash = n.id; });
+      g.addEventListener('pointerdown', e => { n.fixed = true; n.dragged = false; g.setPointerCapture(e.pointerId); });
+      g.addEventListener('pointermove', e => { if (!n.fixed || !(e.buttons & 1)) return; const p = pt(e); n.x = p.x; n.y = p.y; n.dragged = true; settle(); });
+      g.addEventListener('pointerup', () => { n.fixed = false; settle(); });
+      return g;
+    });
+    function pt(e) { const r = svg.getBoundingClientRect(); return { x: (e.clientX - r.left) / r.width * W, y: (e.clientY - r.top) / r.height * H }; }
+    function draw() {
+      lines.forEach(l => { l.setAttribute('x1', l._a.x); l.setAttribute('y1', l._a.y); l.setAttribute('x2', l._b.x); l.setAttribute('y2', l._b.y); });
+      N.forEach(n => n.el.setAttribute('transform', `translate(${n.x.toFixed(1)},${n.y.toFixed(1)})`));
+    }
+    function focus(n) { map.classList.add('focus'); n.el.classList.add('on'); n.nb.forEach(m => m.el.classList.add('on')); lines.forEach(l => l.classList.toggle('on', l._a === n || l._b === n)); }
+    function unfocus() { map.classList.remove('focus'); nodes.forEach(g => g.classList.remove('on')); lines.forEach(l => l.classList.remove('on')); }
+    let raf = 0, energy = 0;
+    function settle() { energy = 40; if (!raf) raf = requestAnimationFrame(loop); }
+    function loop() { tick(.3); draw(); raf = --energy > 0 ? requestAnimationFrame(loop) : 0; }
+    draw();
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) settle();
+    window.paintGraph = () => N.forEach(n => n.el.classList.toggle('done', read.has(n.id)));
+    paintGraph();
+  })();
+
   function render() {
     document.querySelectorAll('[data-id]').forEach(el => {
       const done = read.has(el.dataset.id);
@@ -170,7 +291,8 @@
       if (el.tagName === 'ARTICLE') el.querySelector('.mark').textContent = done ? 'Read' : 'Mark read';
     });
     document.getElementById('progress').textContent = `${read.size} of ${FIELDS.length} read`;
-    document.getElementById('bar').style.width = (100 * read.size / FIELDS.length) + '%';
+    document.getElementById('ringfill').style.strokeDashoffset = 1 - read.size / FIELDS.length;
+    if (window.paintGraph) paintGraph();
   }
   render();
 
@@ -179,18 +301,42 @@
     document.querySelectorAll('article').forEach(a => a.classList.toggle('hidden', q && !a.textContent.toLowerCase().includes(q)));
     document.querySelectorAll('nav a').forEach(a => a.hidden = q && !document.getElementById(a.dataset.id).textContent.toLowerCase().includes(q));
   };
-  // ponytail: constellation is 60 random nodes joined when close; CSS does the motion
-  (() => {
-    const W = 800, H = 400, pts = Array.from({ length: 60 }, () => [Math.random() * W, Math.random() * H]);
-    let s = '';
-    pts.forEach((a, i) => pts.slice(i + 1).forEach(b => { if (Math.hypot(a[0] - b[0], a[1] - b[1]) < 110) s += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`; }));
-    pts.forEach(p => s += `<circle cx="${p[0]}" cy="${p[1]}" r="1.6" style="--t:${(2 + Math.random() * 4).toFixed(1)}s"/>`);
-    document.getElementById('sky').innerHTML = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice"><g>${s}</g></svg>`;
-  })();
   const t = document.getElementById('title');
   t.innerHTML = t.textContent.split(' ').map((w, i) => `<span style="animation-delay:${i * 60}ms">${w}</span>`).join(' ');
   const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), { rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('article, .domain').forEach(el => io.observe(el));
+  // scroll-spy + resume: the article nearest the top is "current"; remembered for next visit
+  const LAST = 'fieldbook.last';
+  const arts = [...document.querySelectorAll('article')];
+  let current = null;
+  const spy = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) setCurrent(e.target.id); });
+  }, { rootMargin: '-10% 0px -75% 0px' });
+  arts.forEach(a => spy.observe(a));
+  function setCurrent(id) {
+    if (id === current) return; current = id;
+    document.querySelectorAll('nav a.current').forEach(a => a.classList.remove('current'));
+    const a = document.querySelector(`nav a[data-id="${id}"]`); if (!a) return;
+    a.classList.add('current'); a.scrollIntoView({ block: 'nearest' });
+    try { localStorage.setItem(LAST, id); } catch {}
+  }
+  try {
+    const last = localStorage.getItem(LAST), f = last && document.getElementById(last);
+    if (f && !location.hash) { const r = document.getElementById('resume'); r.href = '#' + last; r.querySelector('span').textContent = 'Resume at ' + f.querySelector('h3').firstChild.nextSibling.textContent.trim(); r.classList.add('show'); }
+  } catch {}
+
+  // keyboard: / search, j/k move, r mark read, Esc clears
+  document.addEventListener('keydown', e => {
+    const typing = e.target.matches('input, textarea');
+    if (e.key === 'Escape' && typing) { e.target.value = ''; e.target.dispatchEvent(new Event('input')); e.target.blur(); return; }
+    if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === '/') { e.preventDefault(); document.getElementById('q').focus(); return; }
+    const vis = arts.filter(a => !a.classList.contains('hidden'));
+    const i = vis.findIndex(a => a.id === current);
+    if (e.key === 'j' || e.key === 'ArrowDown' && e.shiftKey) { e.preventDefault(); const n = vis[Math.min(i + 1, vis.length - 1)]; n && n.scrollIntoView({ block: 'start' }); setCurrent(n.id); }
+    if (e.key === 'k' || e.key === 'ArrowUp' && e.shiftKey) { e.preventDefault(); const n = vis[Math.max(i - 1, 0)]; n && n.scrollIntoView({ block: 'start' }); setCurrent(n.id); }
+    if (e.key === 'r' && current) document.querySelector(`#${current} .mark`).click();
+  });
   document.getElementById('toggle').onclick = () => document.getElementById('nav').classList.toggle('open');
 </script>
 </body>

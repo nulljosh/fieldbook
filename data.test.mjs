@@ -36,3 +36,12 @@ test('generated native sources are in sync with data.js', async () => {
   const after = readFileSync('ios/Fieldbook/Fields.swift', 'utf8') + readFileSync('kmp/shared/src/commonMain/kotlin/com/nulljosh/fieldbook/Fields.kt', 'utf8');
   assert.equal(before, after, 'run node scripts/gen.mjs and commit');
 });
+test('every field links to real fields, no self-links, everyone is on the map', () => {
+  const names = new Set(F.map(f => f.n));
+  const deg = {};
+  for (const f of F) {
+    assert.ok(f.r.length >= 2, `${f.n}: too few links`);
+    for (const r of f.r) { assert.ok(names.has(r), `${f.n} -> ${r} unknown`); assert.notEqual(r, f.n); deg[r] = 1; deg[f.n] = 1; }
+  }
+  assert.equal(Object.keys(deg).length, F.length, 'isolated field');
+});
