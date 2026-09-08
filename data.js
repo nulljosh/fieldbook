@@ -759,12 +759,21 @@ window.FIELDS = [
 
   { d: "Applied",
     n: "Engineering",
-    r: ["Materials science", "Computer science", "Fluid dynamics", "Agriculture", "Classical mechanics"],
+    r: ["Materials science", "Computer science", "Fluid dynamics", "Agriculture", "Classical mechanics", "Rocket science"],
     s: "Making things that work under constraints.",
     p: "Science asks what is true. Engineering asks what can be built, with this budget, this material, this deadline, and this margin of safety. Every field of science has an engineering twin: mechanical, electrical, chemical, civil, software, bio. The core skill is trade-offs: nothing is optimal on every axis. Failure analysis is how the field learns.",
     k: ["Constraints define the problem", "Factor of safety: build stronger than needed", "Everything is a trade-off", "Failures teach more than successes"],
     g: "A bridge is not designed to hold its load. It is designed to hold several times its load, because the world is not the drawing.",
     q: { q: "Why is a bridge built to hold far more than its expected load?", a: "Safety factors cover unknowns, wear, and bad days", x: ["Steel is cheap", "Loads are always underestimated by law", "Bridges shrink over time"] } },
+
+  { d: "Applied",
+    n: "Rocket science",
+    r: ["Classical mechanics", "Thermodynamics", "Fluid dynamics", "Engineering", "Astronomy", "Materials science"],
+    s: "Throwing mass backward hard enough to leave the planet.",
+    p: "A rocket moves by pushing exhaust one way so it goes the other. That is Newton's third law and nothing more exotic. The catch is the rocket equation: the fuel you carry has mass, so you need fuel to lift the fuel, and the numbers grow exponentially. That is why rockets are mostly propellant, why they drop empty stages, and why every gram of payload is fought over. Orbit is not about going up. It is about going sideways so fast you keep missing the ground.",
+    k: ["Thrust is momentum thrown backward", "The rocket equation punishes every extra gram", "Staging discards dead mass mid-flight", "Orbit is sideways speed, not height"],
+    g: "The name is a joke on itself. The physics is high-school mechanics. The hard part is that nothing is allowed to fail.",
+    q: { q: "Why is most of a rocket's mass fuel?", a: "Fuel must lift the fuel that lifts the payload, and the cost compounds", x: ["Fuel is cheaper than metal", "Engines weigh almost nothing", "Regulations require a minimum fuel load"] } },
 
   { d: "Applied",
     n: "Agriculture",
