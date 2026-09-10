@@ -27,6 +27,19 @@
   nav a:hover { background: var(--border, #eee); }
   nav a.done::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent, #111); flex: none; }
   nav a:not(.done)::before { content: ''; width: 6px; height: 6px; border-radius: 50%; border: 1px solid var(--border2, #ccc); flex: none; }
+  #related { margin: 1rem 0; border-top: 1px solid var(--border, #eee); padding-top: .5rem; }
+  #related a { font-size: .85rem; }
+  .print { border: 1px solid var(--border2, #ddd); padding: .35rem .8rem; margin-bottom: 1rem; }
+  @media print {
+    nav, .map, .demo, .toggle, .mark, .check, .anchor, .print, #resume, footer { display:none!important; }
+    .layout { display:block; }
+    main { max-width:none; padding:0; }
+    body { background:white; color:black; }
+    article, .domain, .intro h1 span { opacity:1!important; transform:none!important; animation:none!important; }
+    article { break-inside:avoid; }
+    h2,h3 { break-after:avoid; }
+    .icon * { stroke-dashoffset:0!important; }
+  }
   .progress { font-size: .8rem; color: var(--text2, #555); padding: 0 .5rem; margin-top: 1.25rem; }
 
   main { padding: 3rem clamp(1.5rem, 5vw, 5rem); max-width: 860px; }
@@ -113,6 +126,19 @@
   .ring circle { fill: none; stroke-width: 3.5; }
   .ring .track { stroke: var(--border2, #ddd); }
   .ring .fill { stroke: var(--accent, #111); stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .8s var(--ease, ease-out); }
+  #related { margin: 1rem 0; border-top: 1px solid var(--border, #eee); padding-top: .5rem; }
+  #related a { font-size: .85rem; }
+  .print { border: 1px solid var(--border2, #ddd); padding: .35rem .8rem; margin-bottom: 1rem; }
+  @media print {
+    nav, .map, .demo, .toggle, .mark, .check, .anchor, .print, #resume, footer { display:none!important; }
+    .layout { display:block; }
+    main { max-width:none; padding:0; }
+    body { background:white; color:black; }
+    article, .domain, .intro h1 span { opacity:1!important; transform:none!important; animation:none!important; }
+    article { break-inside:avoid; }
+    h2,h3 { break-after:avoid; }
+    .icon * { stroke-dashoffset:0!important; }
+  }
   .progress { margin-top: 0; font-variant-numeric: tabular-nums; }
   .resume { display: none; align-items: center; gap: .5rem; margin: 1rem 0 0; padding: .55rem .9rem; border-radius: 999px; background: var(--text, #111); color: var(--bg, #fff); font-size: .9rem; font-weight: 600; box-shadow: var(--shadow-md, 0 4px 14px rgba(0,0,0,.12)); animation: rise .6s var(--ease, ease-out) both; }
   .resume.show { display: inline-flex; }
@@ -213,6 +239,28 @@
   const domains = [...new Set(FIELDS.map(f => f.d))];
   const list = document.getElementById('list'), content = document.getElementById('content');
 
+  const related = document.createElement('aside');
+  related.id = 'related'; related.hidden = true; related.setAttribute('aria-label', 'Related fields');
+  list.before(related);
+  const printButton = document.createElement('button');
+  printButton.className = 'print'; printButton.textContent = 'Print / save PDF';
+  printButton.onclick = () => window.print();
+  document.querySelector('.intro').appendChild(printButton);
+  const degree = name => FIELDS.filter(f => f.r.includes(name)).length;
+  function showRelated(id) {
+    const field = FIELDS.find(f => slug(f.n) === id);
+    if (!field) return;
+    const neighbors = FIELDS.filter(f => f !== field && (field.r.includes(f.n) || f.r.includes(field.n)))
+      .sort((a,b) => degree(b.n) - degree(a.n) || a.n.localeCompare(b.n)).slice(0,5);
+    related.replaceChildren();
+    const heading = document.createElement('h2'); heading.textContent = 'Related to ' + field.n; related.appendChild(heading);
+    for (const f of neighbors) {
+      const a = document.createElement('a'); a.href = '#' + slug(f.n); a.textContent = f.n;
+      a.onclick = () => { document.getElementById('q').value = ''; document.getElementById('q').dispatchEvent(new Event('input')); };
+      related.appendChild(a);
+    }
+    related.hidden = !neighbors.length;
+  }
   for (const d of domains) {
     const words = FIELDS.filter(f => f.d === d).reduce((n, f) => n + (f.p + f.k.join(' ') + f.g).split(/\s+/).length, 0);
     const h = document.createElement('h2'); h.innerHTML = `<span>${d}</span><small>${Math.max(1, Math.round(words / 220))} min</small>`; list.appendChild(h);
@@ -312,7 +360,7 @@
   document.getElementById('q').oninput = e => {
     const q = e.target.value.trim().toLowerCase();
     document.querySelectorAll('article').forEach(a => a.classList.toggle('hidden', q && !a.textContent.toLowerCase().includes(q)));
-    document.querySelectorAll('nav a').forEach(a => a.hidden = q && !document.getElementById(a.dataset.id).textContent.toLowerCase().includes(q));
+    document.querySelectorAll('#list a').forEach(a => a.hidden = q && !document.getElementById(a.dataset.id).textContent.toLowerCase().includes(q));
   };
   const t = document.getElementById('title');
   t.innerHTML = t.textContent.split(' ').map((w, i) => `<span style="animation-delay:${i * 60}ms">${w}</span>`).join(' ');
@@ -330,6 +378,7 @@
     if (id === current) return; current = id;
     document.querySelectorAll('nav a.current').forEach(a => a.classList.remove('current'));
     const a = document.querySelector(`nav a[data-id="${id}"]`); if (!a) return;
+    showRelated(id);
     a.classList.add('current'); a.scrollIntoView({ block: 'nearest' });
     try { localStorage.setItem(LAST, id); } catch {}
   }
@@ -346,8 +395,8 @@
     if (e.key === '/') { e.preventDefault(); document.getElementById('q').focus(); return; }
     const vis = arts.filter(a => !a.classList.contains('hidden'));
     const i = vis.findIndex(a => a.id === current);
-    if (e.key === 'j' || e.key === 'ArrowDown' && e.shiftKey) { e.preventDefault(); const n = vis[Math.min(i + 1, vis.length - 1)]; n && n.scrollIntoView({ block: 'start' }); setCurrent(n.id); }
-    if (e.key === 'k' || e.key === 'ArrowUp' && e.shiftKey) { e.preventDefault(); const n = vis[Math.max(i - 1, 0)]; n && n.scrollIntoView({ block: 'start' }); setCurrent(n.id); }
+    if (e.key === 'j' || e.key === 'ArrowDown' && e.shiftKey) { e.preventDefault(); const n = vis[Math.min(i + 1, vis.length - 1)]; if (n) { n.scrollIntoView({ block: 'start' }); setCurrent(n.id); } }
+    if (e.key === 'k' || e.key === 'ArrowUp' && e.shiftKey) { e.preventDefault(); const n = vis[Math.max(i - 1, 0)]; if (n) { n.scrollIntoView({ block: 'start' }); setCurrent(n.id); } }
     if (e.key === 'r' && current) document.querySelector(`#${current} .mark`).click();
   });
   document.getElementById('toggle').onclick = () => document.getElementById('nav').classList.toggle('open');

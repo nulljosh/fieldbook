@@ -13,3 +13,6 @@ Package.swift
 Package.resolved
 .github
 .build
+
+.wrangler
+$HOME
