@@ -15,3 +15,7 @@ open index.html
 env -u CLOUDFLARE_API_TOKEN npx wrangler deploy
 https://fieldbook.heyitsmejosh.com
 ```
+
+## Architecture
+
+<img src="architecture.svg" width="600">
