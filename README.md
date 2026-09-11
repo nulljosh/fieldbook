@@ -1,5 +1,7 @@
 # Fieldbook
 
+![version](https://img.shields.io/badge/version-v1.0.0-blue) ![license](https://img.shields.io/badge/license-MIT-green) [![GitHub](https://img.shields.io/badge/GitHub-nulljosh%2Ffieldbook-black?logo=github)](https://github.com/nulljosh/fieldbook)
+
 Nobody ever shows you the whole map. School hands you a few rooms and never the floor plan. You can finish a degree and still not know what topology is, or that the kidney sets your blood pressure, or that most physicists study materials. That's the gap.
 
 Fieldbook is one page. Every field of science and math, a few hundred words each: what it studies, the four ideas that matter, and the thing most people get wrong. Read it top to bottom in an afternoon. "Oh, so that's what linear algebra is for." That's it. That's the whole product.
