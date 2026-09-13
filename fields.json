@@ -2549,5 +2549,92 @@
     "The report was late"
    ]
   }
+ },
+ {
+  "d": "Biology",
+  "n": "Virology",
+  "r": [
+   "Microbiology",
+   "Immunology",
+   "Epidemiology and public health",
+   "Molecular biology",
+   "Genetics"
+  ],
+  "s": "How viruses work, spread, and get stopped.",
+  "p": "A virus is not fully alive. It is genetic instructions in a shell, useless until it gets inside a cell and hijacks that cell's machinery to make copies of itself. It carries no metabolism of its own. That is why antibiotics do nothing to it: there is no bacterial machinery to poison. Vaccines work by showing the immune system a harmless preview so it already has the weapon built before the real infection arrives.",
+  "k": [
+   "Viruses need a host cell; they cannot reproduce alone",
+   "Antibiotics target bacteria, not viruses",
+   "Mutation happens fast because copying is sloppy",
+   "Vaccines train the immune system in advance, without the disease"
+  ],
+  "g": "People take antibiotics for a cold or flu. Those are viral. The pills do nothing except breed resistant bacteria elsewhere in the body.",
+  "q": {
+   "q": "Why do antibiotics not help against a viral infection like the flu?",
+   "a": "Antibiotics kill bacterial machinery, which viruses do not have",
+   "x": [
+    "Viruses are too small for the drug to reach",
+    "Antibiotics only work above body temperature",
+    "Viruses are immune to all chemicals"
+   ]
+  }
+ },
+ {
+  "d": "Biology",
+  "n": "Paleontology",
+  "r": [
+   "Geology",
+   "Evolutionary biology",
+   "Zoology",
+   "Botany",
+   "Anthropology"
+  ],
+  "s": "Reading the history of life from what fossilized.",
+  "p": "Fossils are rare. Most things rot or get eaten before mineral can replace their tissue, so the record is a thin, biased sample skewed toward hard parts like bone and shell in places with the right mud. Layers of rock stack in order, oldest at the bottom, so position tells relative age, and radioactive decay in the rock gives an absolute date. Mass extinctions show up as sudden, sharp cutoffs where whole groups vanish from the layers at once.",
+  "k": [
+   "Fossilization is rare; the record is biased, not complete",
+   "Older layers sit below younger ones, undisturbed",
+   "Radiometric dating gives absolute ages from decay rates",
+   "Mass extinctions appear as sharp boundaries in the rock"
+  ],
+  "g": "People think we have found most dinosaur species. Estimates suggest we have named a small fraction of what existed; most left no trace at all.",
+  "q": {
+   "q": "Why is the fossil record considered incomplete rather than a full history of life?",
+   "a": "Fossilization is rare and biased toward hard parts in the right conditions",
+   "x": [
+    "Fossils dissolve after a few thousand years",
+    "Only large animals ever fossilize",
+    "Paleontologists have not looked hard enough"
+   ]
+  }
+ },
+ {
+  "d": "Applied",
+  "n": "Robotics",
+  "r": [
+   "Engineering",
+   "Artificial intelligence",
+   "Algorithms and complexity",
+   "Classical mechanics",
+   "Computer science"
+  ],
+  "s": "Machines that sense, decide, and act in the physical world.",
+  "p": "A robot is a loop: sense the world, decide what to do, act, and check the result. Each stage fights different noise. Sensors are imprecise and disagree with each other. Actuators do not move exactly as commanded. Decisions have to run fast enough to matter before the world changes again. The hard part is rarely the AI planning the move, it is the control theory keeping a physical body stable while doing it.",
+  "k": [
+   "Sense-decide-act-check is the basic loop",
+   "Sensors are noisy; fusing several beats trusting one",
+   "Feedback control corrects for the gap between planned and actual motion",
+   "Simulation is cheap; the real world adds friction, slip, and delay simulation misses"
+  ],
+  "g": "People assume the hard part of robotics is the intelligence. Most working robots fail from unmodeled friction and slop in the mechanics, not bad decisions.",
+  "q": {
+   "q": "A warehouse robot's wheels slip slightly on a wet floor. What corrects for this?",
+   "a": "Feedback control comparing actual position to the commanded path",
+   "x": [
+    "A faster processor",
+    "A larger training dataset",
+    "Removing the wheels entirely"
+   ]
+  }
  }
 ]
