@@ -15,4 +15,6 @@ Encyclopedia of science and math fields. One page shows every field as a card: d
 | `watchos/` | watchOS read-only feed (no writing, matching iOS). Same data source. |
 | `kmp/` + `composeApp/` | Kotlin Multiplatform. Android and desktop Compose. Native-release.yml CI builds msi, deb, apk. |
 | `tui/` | Terminal UI. SwiftPM + SwiftTUI target. Reads Fields.swift from parent project. |
+| `Package.swift` | SwiftPM manifest for iOS, macOS, watchOS, and TUI targets. |
+| `data.test.mjs` + `ui.test.mjs` | Unit tests. `data.test.mjs` verifies the data structure matches what `gen.mjs` expects. `ui.test.mjs` checks layout rendering. |
 | `wrangler.toml` | Cloudflare Worker, static asset deployment. |
