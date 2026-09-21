@@ -16,6 +16,8 @@ env -u CLOUDFLARE_API_TOKEN npx wrangler deploy
 https://fieldbook.heyitsmejosh.com
 ```
 
+<img src="progress.svg" width="460">
+
 ## Architecture
 
 <img src="architecture.svg" width="600">
