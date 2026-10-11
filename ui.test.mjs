@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 const { chromium } = createRequire('/Users/joshua/Documents/Code/epiphany/package.json')('playwright');
-const URL = process.env.URL || 'https://fieldbook.heyitsmejosh.com';
+const URL = process.env.URL || 'https://fieldbook.jaybulb.com';
 
 test('page renders, search filters, mark read persists', async () => {
   const browser = await chromium.launch({ channel: 'chrome' });
