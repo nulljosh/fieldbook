@@ -13,7 +13,7 @@ v0 is the map. v1 adds a question per field so you can check you got it. After t
 ```
 open index.html
 env -u CLOUDFLARE_API_TOKEN npx wrangler deploy
-https://fieldbook.heyitsmejosh.com
+https://fieldbook.jaybulb.com
 ```
 
 <img src="progress.svg" width="460">
